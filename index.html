@@ -5,14 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spent: Money Tracker — Your money. Your device. Your control.</title>
   <meta name="description" content="Privacy-focused, offline-first personal finance app. Track expenses, manage accounts, and get AI-powered insights — all without your data leaving your device.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+  <!-- Background Effects -->
+  <div class="bg-grid"></div>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="scanlines"></div>
+
   <!-- Nav -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo"><span>Spent</span> Money Tracker</a>
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Spent Logo">
+        Spent
+      </a>
       <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
@@ -26,7 +42,13 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="hero-badge">v2.0.0 — Now Available</div>
+        <div class="hero-logo">
+          <img src="logo.png" alt="Spent: Money Tracker">
+        </div>
+        <div class="hero-badge">
+          <span class="pulse"></span>
+          v2.0.0 — Now Available
+        </div>
         <h1>Track Spending.<br><span class="gradient">Keep Your Privacy.</span></h1>
         <p class="hero-tagline">Your money. Your device. Your control. A personal finance app that never uploads your data.</p>
         <div class="hero-buttons">
@@ -72,90 +94,108 @@
   <section id="features">
     <div class="container">
       <div class="section-header">
+        <div class="section-label">Features</div>
         <h2>Everything you need to manage money</h2>
         <p>Powerful features, zero data collection.</p>
       </div>
       <div class="features-grid">
+
         <div class="feature-card">
-          <div class="feature-icon">&#128274;</div>
+          <div class="feature-icon purple">&#128274;</div>
           <h3>100% Offline &amp; Private</h3>
           <p>All data is stored locally on your device using SQLite. Nothing is uploaded to any server.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128218;</div>
+          <div class="feature-icon cyan">&#128218;</div>
           <h3>Multi-Account Passbooks</h3>
           <p>Manage Cash, Bank, Savings, and custom accounts with individual balances and colors.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#9889;</div>
+          <div class="feature-icon green">&#9889;</div>
           <h3>Smart Transaction Entry</h3>
           <p>Quick-add expenses, income, or transfers with auto-focused amount fields and clipboard extraction.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128203;</div>
+          <div class="feature-icon pink">&#128203;</div>
           <h3>Paste &amp; Log</h3>
           <p>Copy a bank SMS or UPI confirmation. Spent extracts transaction details for one-tap approval — all locally.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#129504;</div>
+          <div class="feature-icon amber">&#129504;</div>
           <h3>Merchant Learning Engine</h3>
           <p>Automatically maps merchant names and remembers your category choices over time.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128737;</div>
+          <div class="feature-icon purple">&#128737;</div>
           <h3>Duplicate Prevention</h3>
           <p>SHA-256 fingerprinting prevents the same transaction from being logged twice.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#127912;</div>
+          <div class="feature-icon cyan">&#127912;</div>
           <h3>Custom Categories</h3>
           <p>Build hierarchical category trees with 24+ icons and 15 color options for income and expenses.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128260;</div>
+          <div class="feature-icon green">&#128260;</div>
           <h3>Subscription Tracker</h3>
           <p>Log recurring subscriptions with billing cycles and see your true monthly burn rate.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128177;</div>
+          <div class="feature-icon pink">&#128177;</div>
           <h3>Currency Converter</h3>
           <p>Real-time exchange rates for 10+ currencies with offline caching and 3-tier fallback.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128161;</div>
+          <div class="feature-icon amber">&#128161;</div>
           <h3>Spending Personality</h3>
           <p>Rule-based analytics classifies you as Saver, Balanced, Spender, or Impulse Buyer with actionable advice.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128269;</div>
+          <div class="feature-icon purple">&#128269;</div>
           <h3>Pattern Detection</h3>
           <p>Identifies behaviors like Weekend Splurge, Late-Night Shopping, and Subscription Trap.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#127902;</div>
+          <div class="feature-icon cyan">&#127902;</div>
           <h3>Monthly Stories</h3>
           <p>Instagram-style animated slideshows recapping your financial month with personality-driven narratives.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128200;</div>
+          <div class="feature-icon green">&#128200;</div>
           <h3>Reports &amp; Export</h3>
           <p>Visual bar charts, date range filtering, and export to CSV, PDF, or chart screenshot.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128275;</div>
+          <div class="feature-icon pink">&#128275;</div>
           <h3>Biometric Lock</h3>
           <p>Secure your data with Face ID, Touch ID, or Fingerprint authentication.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#127752;</div>
+          <div class="feature-icon amber">&#127752;</div>
           <h3>Theming</h3>
           <p>Light, Dark, and System-auto themes with glass-morphism UI design.</p>
         </div>
+
         <div class="feature-card">
-          <div class="feature-icon">&#128276;</div>
+          <div class="feature-icon purple">&#128276;</div>
           <h3>Notifications &amp; Reminders</h3>
           <p>Daily reminders, weekly insights, subscription reminders, and spending alerts.</p>
         </div>
+
       </div>
     </div>
   </section>
@@ -163,11 +203,13 @@
   <!-- CTA -->
   <section class="cta">
     <div class="container">
-      <h2>Take control of your finances</h2>
-      <p>Download Spent and start tracking — privately.</p>
-      <div class="hero-buttons">
-        <a href="https://apps.apple.com/app/spent-money-tracker" class="btn btn-primary" target="_blank" rel="noopener">Download for iOS</a>
-        <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="btn btn-secondary" target="_blank" rel="noopener">Download for Android</a>
+      <div class="cta-box">
+        <h2>Take control of your finances</h2>
+        <p>Download Spent and start tracking — privately.</p>
+        <div class="hero-buttons">
+          <a href="https://apps.apple.com/app/spent-money-tracker" class="btn btn-primary" target="_blank" rel="noopener">Download for iOS</a>
+          <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="btn btn-secondary" target="_blank" rel="noopener">Download for Android</a>
+        </div>
       </div>
     </div>
   </section>
@@ -184,6 +226,17 @@
       </ul>
     </div>
   </footer>
+
+  <script>
+    // Card glow follow mouse
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        card.style.setProperty('--mouse-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+      });
+    });
+  </script>
 
 </body>
 </html>
