@@ -516,134 +516,61 @@ section {
   line-height: 1.5;
 }
 
-/* === Features Intro === */
-.features-intro {
+/* === Features Section === */
+.features-section {
+  padding: 100px 0 80px;
   text-align: center;
-  padding: 100px 0 40px;
 }
 
-.features-intro h2 {
+.features-title {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--navy);
   line-height: 1.15;
+  margin-bottom: 48px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  text-align: left;
+}
+
+.feature-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-hover);
+}
+
+.feature-icon {
+  font-size: 1.6rem;
+  display: block;
   margin-bottom: 12px;
 }
 
-.features-intro p {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-}
-
-/* === Apple-style Scroll Features === */
-.scroll-features {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px 32px 60px;
-}
-
-.sf-item {
-  padding: 60px 0;
-  border-bottom: 1px solid var(--border);
-  opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.sf-item:last-child {
-  border-bottom: none;
-}
-
-.sf-item.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.sf-inner {
-  position: relative;
-}
-
-.sf-number {
-  font-size: 0.75rem;
+.feature-tile h3 {
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.6s 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.sf-item.in-view .sf-number {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.sf-icon {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  display: inline-block;
-  opacity: 0;
-  transform: scale(0.5) rotate(-10deg);
-  transition: opacity 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.sf-item.in-view .sf-icon {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
-}
-
-.sf-item h3 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.025em;
   color: var(--navy);
-  margin-bottom: 12px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
 }
 
-.sf-item.in-view h3 {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.sf-item p {
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: var(--text-secondary);
-  max-width: 560px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.sf-item.in-view p {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Accent colors per item */
-.sf-item[data-accent="green"] h3 {
-  background: linear-gradient(135deg, var(--navy) 60%, var(--green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.sf-item[data-accent="navy"] h3 {
-  background: linear-gradient(135deg, var(--navy) 60%, var(--navy-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.feature-tile p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* === CTA === */
@@ -907,7 +834,12 @@ section {
   }
 
   .features-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .feature-tile {
+    padding: 18px;
   }
 
   .hero h1 {
@@ -944,31 +876,12 @@ section {
     font-size: 1.8rem;
   }
 
-  .scroll-features {
-    padding: 20px 20px 40px;
-  }
-
-  .sf-item {
-    padding: 40px 0;
-  }
-
-  .sf-icon {
-    font-size: 2.2rem;
-  }
-
-  .sf-item h3 {
-    font-size: 1.4rem;
-  }
-
-  .sf-item p {
-    font-size: 1rem;
-  }
-
-  .features-intro {
-    padding: 60px 0 20px;
-  }
-
-  .features-intro h2 {
+  .features-title {
     font-size: 1.8rem;
+    margin-bottom: 32px;
+  }
+
+  .features-section {
+    padding: 60px 0 40px;
   }
 }
