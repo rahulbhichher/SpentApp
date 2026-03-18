@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spent: Money Tracker — Your money. Your device. Your control.</title>
-  <meta name="description" content="Privacy-focused, offline-first personal finance app. Track expenses, manage accounts, and get AI-powered insights — all without your data leaving your device.">
+  <meta name="description" content="Privacy-focused, offline-first personal finance app. Track expenses, manage accounts, scan receipts with OCR, set budget goals, convert currencies, plan savings, calculate EMIs, and get AI-powered insights — all without your data leaving your device.">
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,10 +45,10 @@
         </div>
         <div class="hero-badge">
           <span class="pulse"></span>
-          v2.0.0 — Now Available
+          v3.0.0 — Now Available
         </div>
         <h1>Track Spending.<br><span class="green">Keep Your Privacy.</span></h1>
-        <p class="hero-tagline">Your money. Your device. Your control. A personal finance app that never uploads your data.</p>
+        <p class="hero-tagline">Track expenses, manage multiple accounts, scan receipts, set budget goals, convert currencies, plan savings, calculate EMIs, and get AI-powered insights — all without your data ever leaving your device.</p>
         <div class="hero-buttons">
           <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="btn btn-primary" target="_blank" rel="noopener">
             <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.04c-.35-.2-.57-.58-.57-1V1.96c0-.42.22-.8.57-1l10.88 11.04L3.18 23.04zm1.63.73l12.07-6.73-2.8-2.85-9.27 9.58zm12.07-16.08L4.81.96l9.27 9.58 2.8-2.85zm1.73.96c.48.27.78.79.78 1.35s-.3 1.08-.78 1.35l-2.87 1.6-3.03-3.08 3.03-2.82 2.87 1.6z"/></svg>
@@ -60,7 +60,7 @@
             <span class="badge">Coming Soon</span>
           </div>
         </div>
-        <p class="hero-version">Version 2.0.0 &middot; Android &middot; iOS coming soon</p>
+        <p class="hero-version">Version 3.0.0 &middot; Android &middot; iOS coming soon</p>
       </div>
     </div>
   </section>
@@ -138,19 +138,19 @@
 
     <div class="sf-item" data-accent="navy">
       <div class="sf-inner">
-        <div class="sf-icon">&#128203;</div>
+        <div class="sf-icon">&#128247;</div>
         <div class="sf-number">04</div>
-        <h3>Paste &amp; Log</h3>
-        <p>Copy a bank SMS, UPI confirmation, or receipt. Spent scans your clipboard, extracts the transaction, and queues it for one-tap approval. All on-device.</p>
+        <h3>Receipt Scanner</h3>
+        <p>Point your camera at any receipt or pick one from your gallery. On-device OCR extracts the total, merchant name, date, and line items with a confidence indicator. All processing happens locally — zero cloud calls.</p>
       </div>
     </div>
 
     <div class="sf-item" data-accent="green">
       <div class="sf-inner">
-        <div class="sf-icon">&#129504;</div>
+        <div class="sf-icon">&#128203;</div>
         <div class="sf-number">05</div>
-        <h3>Merchant Learning Engine</h3>
-        <p>Automatically maps merchant names like "SWIGGY INDIA" to "Swiggy" and remembers your category choices over time.</p>
+        <h3>Paste &amp; Log</h3>
+        <p>Copy a bank SMS, UPI confirmation, or receipt. Spent scans your clipboard, extracts the transaction, and queues it for one-tap approval. The merchant learning engine remembers your category choices over time. All on-device.</p>
       </div>
     </div>
 
@@ -174,26 +174,62 @@
 
     <div class="sf-item" data-accent="navy">
       <div class="sf-inner">
-        <div class="sf-icon">&#128260;</div>
+        <div class="sf-icon">&#127919;</div>
         <div class="sf-number">08</div>
-        <h3>Subscription Tracker</h3>
-        <p>Log recurring subscriptions with billing cycles. See your true monthly burn rate and never get surprised by a renewal again.</p>
+        <h3>Budget Goals &amp; Alerts</h3>
+        <p>Set monthly spending limits per category or an overall budget. Color-coded progress bars on the Dashboard turn green → orange → red. Get push notifications at 80% and 100% of your limit.</p>
       </div>
     </div>
 
     <div class="sf-item" data-accent="green">
       <div class="sf-inner">
-        <div class="sf-icon">&#128177;</div>
+        <div class="sf-icon">&#128260;</div>
         <div class="sf-number">09</div>
+        <h3>Recurring Transactions</h3>
+        <p>Schedule recurring expenses and income with daily, weekly, or monthly frequency. Supports weekday-only scheduling and auto-backfills missed days when you open the app.</p>
+      </div>
+    </div>
+
+    <div class="sf-item" data-accent="navy">
+      <div class="sf-inner">
+        <div class="sf-icon">&#127793;</div>
+        <div class="sf-number">10</div>
+        <h3>Saving Goals</h3>
+        <p>Create saving goals with a target amount and deadline. Log contributions over time and watch a visual progress bar fill up. Track what you've saved, what remains, and your projected completion pace.</p>
+      </div>
+    </div>
+
+    <div class="sf-item" data-accent="green">
+      <div class="sf-inner">
+        <div class="sf-icon">&#128260;</div>
+        <div class="sf-number">11</div>
+        <h3>Subscription Tracker</h3>
+        <p>Log recurring subscriptions with billing cycles and inline currency conversion. See your true estimated monthly burn rate and never get surprised by a renewal again.</p>
+      </div>
+    </div>
+
+    <div class="sf-item" data-accent="navy">
+      <div class="sf-inner">
+        <div class="sf-icon">&#128177;</div>
+        <div class="sf-number">12</div>
         <h3>Currency Converter</h3>
-        <p>Real-time exchange rates for 10+ currencies. Rates are cached with a 6-hour TTL and a 3-tier API fallback ensures it always works.</p>
+        <p>Real-time exchange rates for 10+ currencies via Cloudflare Workers. Rates are cached with a 6-hour TTL and a 3-tier fallback ensures it works offline. Log multi-currency transactions that record the original amount and exchange rate.</p>
+      </div>
+    </div>
+
+    <div class="sf-item" data-accent="green">
+      <div class="sf-inner">
+        <div class="sf-icon">&#129518;</div>
+        <div class="sf-number">13</div>
+        <h3>EMI Calculator</h3>
+        <p>Enter loan amount, interest rate, and tenure to instantly calculate your monthly EMI, total interest, and total payment. Expand the full amortization schedule with principal vs. interest breakdown for every month.</p>
       </div>
     </div>
 
     <div class="sf-item" data-accent="navy">
       <div class="sf-inner">
         <div class="sf-icon">&#128161;</div>
-        <div class="sf-number">10</div>
+        <div class="sf-number">14</div>
         <h3>Spending Personality</h3>
         <p>Rule-based analytics classifies you as Saver, Balanced, Spender, or Impulse Buyer — with confidence scores and actionable advice.</p>
       </div>
@@ -202,34 +238,34 @@
     <div class="sf-item" data-accent="green">
       <div class="sf-inner">
         <div class="sf-icon">&#128269;</div>
-        <div class="sf-number">11</div>
+        <div class="sf-number">15</div>
         <h3>Pattern Detection</h3>
-        <p>Identifies spending behaviors like Weekend Splurge, Late-Night Shopping, Front-Loaded Spending, and Subscription Trap.</p>
+        <p>Identifies spending behaviors like Weekend Splurge, Late-Night Shopping, Front-Loaded Spending, and Subscription Trap — each with supporting evidence and recommendations.</p>
       </div>
     </div>
 
     <div class="sf-item" data-accent="navy">
       <div class="sf-inner">
         <div class="sf-icon">&#127902;</div>
-        <div class="sf-number">12</div>
+        <div class="sf-number">16</div>
         <h3>Monthly Stories</h3>
-        <p>Instagram-style animated slideshows that recap your financial month with metrics and personality-driven narratives.</p>
+        <p>Instagram-style animated slideshows that recap your financial month with metrics, savings rate, daily averages, and personality-driven narrative insights.</p>
       </div>
     </div>
 
     <div class="sf-item" data-accent="green">
       <div class="sf-inner">
         <div class="sf-icon">&#128200;</div>
-        <div class="sf-number">13</div>
+        <div class="sf-number">17</div>
         <h3>Reports &amp; Export</h3>
-        <p>Visual bar charts with date range filtering. Export everything to CSV, PDF, or save chart screenshots.</p>
+        <p>Filter by Last 7 Days, Last 30 Days, or a custom date range. Animated bar charts visualize your spending trend. Export to CSV, PDF, or share a visual chart screenshot.</p>
       </div>
     </div>
 
     <div class="sf-item" data-accent="navy">
       <div class="sf-inner">
         <div class="sf-icon">&#128275;</div>
-        <div class="sf-number">14</div>
+        <div class="sf-number">18</div>
         <h3>Biometric Lock</h3>
         <p>Secure your data with Face ID, Touch ID, or Fingerprint. Your finances stay private even if someone picks up your phone.</p>
       </div>
@@ -237,19 +273,19 @@
 
     <div class="sf-item" data-accent="green">
       <div class="sf-inner">
-        <div class="sf-icon">&#127752;</div>
-        <div class="sf-number">15</div>
-        <h3>Theming</h3>
-        <p>Light, Dark, and System-auto themes with a polished glass-morphism UI. Your app, your look.</p>
+        <div class="sf-icon">&#128276;</div>
+        <div class="sf-number">19</div>
+        <h3>Smart Notifications</h3>
+        <p>Daily reminders at 8 AM plus your chosen time, weekly spending insights every Sunday, spending check-ins at 6 PM, subscription renewal alerts one day before, and monthly reports on the 1st. All individually toggleable.</p>
       </div>
     </div>
 
     <div class="sf-item" data-accent="navy">
       <div class="sf-inner">
-        <div class="sf-icon">&#128276;</div>
-        <div class="sf-number">16</div>
-        <h3>Notifications &amp; Reminders</h3>
-        <p>Daily reminders, weekly insight notifications, subscription renewal alerts, and spending threshold warnings.</p>
+        <div class="sf-icon">&#127752;</div>
+        <div class="sf-number">20</div>
+        <h3>Theming</h3>
+        <p>Light, Dark, and System-auto themes with a polished glass-morphism UI, fluid animations, and haptic feedback. Your app, your look.</p>
       </div>
     </div>
 
