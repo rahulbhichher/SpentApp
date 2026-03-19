@@ -148,6 +148,7 @@
               <th>Platform</th>
               <th>Purpose</th>
               <th>When Requested</th>
+              <th>Where Data Goes</th>
             </tr>
           </thead>
           <tbody>
@@ -156,30 +157,35 @@
               <td>iOS &amp; Android</td>
               <td>Capture receipt photos for OCR scanning</td>
               <td>When you tap "Take Photo" in Receipt Scanner</td>
+              <td>Stays on device — processed locally via ML Kit</td>
             </tr>
             <tr>
               <td>Photo Library</td>
               <td>iOS &amp; Android</td>
               <td>Select receipt images from gallery</td>
               <td>When you tap "Choose from Gallery"</td>
+              <td>Stays on device — never uploaded</td>
             </tr>
             <tr>
               <td>Notifications</td>
               <td>iOS &amp; Android</td>
               <td>Daily reminders, budget alerts, subscription renewals</td>
               <td>When you enable reminders in Settings</td>
+              <td>Local only — no financial data in notifications</td>
             </tr>
             <tr>
               <td>Biometrics</td>
               <td>iOS &amp; Android</td>
               <td>App lock via Face ID / Touch ID / Fingerprint</td>
               <td>When you enable Biometric Lock</td>
+              <td>Handled by OS — app receives only success/fail</td>
             </tr>
             <tr>
               <td>Internet</td>
               <td>Android</td>
               <td>Ad serving (free version) and exchange rate fetching</td>
               <td>Automatic</td>
+              <td>Ads: Google AdMob (after consent). Rates: Cloudflare proxy (currency pair only)</td>
             </tr>
           </tbody>
         </table>
