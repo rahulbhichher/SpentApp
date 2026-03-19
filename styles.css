@@ -726,6 +726,44 @@ section {
   font-weight: 600;
 }
 
+.table-wrapper {
+  overflow-x: auto;
+  margin: 16px 0 24px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.content-section table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  min-width: 580px;
+}
+
+.content-section th,
+.content-section td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-section th {
+  background: var(--bg-alt);
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.content-section tr:last-child td {
+  border-bottom: none;
+}
+
+.content-section tr:hover td {
+  background: var(--surface-hover);
+}
+
 /* === Contact Cards === */
 .contact-grid {
   display: grid;

@@ -35,7 +35,7 @@
     <div class="container">
       <div class="section-label">Legal</div>
       <h1>Privacy Policy</h1>
-      <p class="subtitle">Effective Date: March 12, 2026 &middot; Last Updated: March 18, 2026</p>
+      <p class="subtitle">Effective Date: March 12, 2026 &middot; Last Updated: March 19, 2026</p>
     </div>
   </div>
 
@@ -43,111 +43,161 @@
   <div class="container">
     <div class="content-section">
 
-      <h2>1. Introduction</h2>
-      <p>Spent: Money Tracker ("Spent", "we", "our", "the app") is a personal finance application designed with privacy as a core principle. This Privacy Policy explains how we handle your information when you use our app.</p>
-      <p><strong>App Name:</strong> Spent: Money Tracker<br>
-      <strong>Developer:</strong> Rahul Bhichher<br>
-      <strong>Contact Email:</strong> <a href="mailto:rahulbhichher@gmail.com">rahulbhichher@gmail.com</a><br>
-      <strong>Bundle Identifier:</strong> com.bhichher.spentmoneytracker</p>
+      <p><strong>Developer:</strong> Rahul Bhichher<br>
+      <strong>Contact:</strong> <a href="mailto:rahulbhichher@gmail.com">rahulbhichher@gmail.com</a><br>
+      <strong>Bundle ID:</strong> com.bhichher.spentmoneytracker</p>
 
-      <h2>2. Data Storage — Offline-First Architecture</h2>
-      <p>Spent is built on an offline-first architecture. All your financial data — including transactions, accounts, categories, budgets, saving goals, subscriptions, recurring transactions, and settings — is stored locally on your device using SQLite. We do not operate any servers that collect, store, or process your personal financial data.</p>
-      <p><strong>Your financial data never leaves your device.</strong></p>
+      <p>Spent ("the App") is built with privacy as a core principle. Your financial data never leaves your device. This policy explains what data is and isn't collected, how your information is protected, and your rights as a user.</p>
 
-      <h2>3. Information We Do NOT Collect</h2>
+      <h2>1. 100% Offline &amp; Local</h2>
+      <p>Your financial data is completely private. All transactions, passbooks, categories, budgets, saving goals, subscriptions, and preferences are stored entirely locally on your device using SQLite. We do not operate servers, and we never collect, transmit, or share your financial data with any third parties.</p>
+      <p>The only network activity is for:</p>
       <ul>
-        <li>Transaction details (amounts, merchants, dates, notes)</li>
-        <li>Account names or balances</li>
-        <li>Category, budget, or subscription information</li>
-        <li>Saving goals or EMI calculations</li>
-        <li>Spending habits, patterns, or personality insights</li>
-        <li>Receipt images or OCR-extracted text</li>
-        <li>Clipboard contents</li>
-        <li>Biometric data (Face ID / Touch ID / Fingerprint templates)</li>
+        <li>Displaying ads (free version only, after explicit consent)</li>
+        <li>Fetching currency exchange rates</li>
+        <li>Processing in-app purchases via Apple/Google</li>
+      </ul>
+      <p><strong>Data we do NOT collect:</strong> Transaction details, account balances, spending patterns, receipt images, clipboard contents, or biometric templates.</p>
+
+      <h2>2. Legal Basis for Processing</h2>
+      <p>We process data under the following legal bases (GDPR Article 6):</p>
+      <ul>
+        <li><strong>Legitimate Interest:</strong> Processing your financial data locally to provide core app functionality (expense tracking, budgets, reports).</li>
+        <li><strong>Consent:</strong> Displaying advertisements via Google AdMob. Ads are only loaded after you explicitly consent during onboarding. You may withdraw consent at any time by upgrading to Premium.</li>
+        <li><strong>Contract:</strong> Processing in-app purchases through Apple App Store or Google Play Store.</li>
       </ul>
 
-      <h2>4. Camera &amp; Photo Library (Receipt Scanner)</h2>
-      <p>Spent includes a Receipt Scanner feature that uses your device's camera or photo library to capture receipt images. Optical Character Recognition (OCR) is performed entirely on-device using Google ML Kit to extract transaction details such as totals, merchant names, dates, and line items. Receipt data is:</p>
+      <h2>3. Camera &amp; Receipt Scanning</h2>
+      <p>Spent allows you to scan receipts using your device camera or by selecting photos from your gallery. This feature requires camera and photo library permissions, which are requested only when you use the receipt scanner.</p>
+      <p><strong>How it works securely:</strong></p>
       <ul>
-        <li>Processed locally using on-device OCR — no cloud APIs are called</li>
-        <li>Never uploaded, transmitted, or stored on any external server</li>
-        <li>Used only to pre-fill transaction fields for your review and approval</li>
+        <li>Receipt images are processed entirely on-device using Google ML Kit (on-device OCR).</li>
+        <li>No images or extracted text are uploaded to any server.</li>
+        <li>Photos are used only to extract transaction details (amount, merchant, date).</li>
+        <li>Receipt images are not stored permanently — only the extracted data is saved locally after you approve it.</li>
       </ul>
-      <p>Camera and photo library access is requested only when you initiate a receipt scan. The app does not access your camera or photos in the background.</p>
 
-      <h2>5. Clipboard Access</h2>
-      <p>Spent includes a "Paste &amp; Log" feature that reads your device clipboard to detect transaction information from copied bank SMS messages, UPI confirmations, or payment receipts. This processing happens entirely on your device. Clipboard data is:</p>
+      <h2>4. Clipboard Feature (Paste &amp; Log)</h2>
+      <p>The "Paste &amp; Log" feature detects bank SMS messages, UPI confirmations, or payment receipts from your clipboard entirely on-device. Clipboard data is:</p>
       <ul>
-        <li>Processed locally using on-device parsing</li>
-        <li>Never transmitted to any external server</li>
-        <li>Cleared from the app's memory after detection</li>
-        <li>Only accessed when the app is opened or when you explicitly use the "Paste &amp; Extract" feature</li>
+        <li>Processed locally and cleared from memory after detection.</li>
+        <li>Never transmitted, stored on servers, or shared with third parties.</li>
+        <li>Fully optional — you can disable it in Settings at any time.</li>
       </ul>
-      <p>You can disable clipboard auto-detection in the app's Settings.</p>
 
-      <h2>6. Currency Exchange Rates</h2>
-      <p>When you use the Currency Converter feature, the app fetches live exchange rates from a Cloudflare Workers proxy. This is the only network request the app makes for functional purposes. The request contains:</p>
+      <h2>5. Biometric Security</h2>
+      <p>If you enable the Biometric Lock feature, Spent uses your device's native Face ID, Touch ID, or passcode API. The app only receives a "success" or "fail" signal from the operating system and does not have any access to your fingerprint or facial recognition data.</p>
+
+      <h2>6. Advertising (Google AdMob)</h2>
+      <p>The free version of Spent displays advertisements provided by Google AdMob, which acts as a data processor. Ads are only loaded after you explicitly consent during onboarding. If you deny consent (including EU/EEA users via the GDPR consent form), no ads are loaded and no ad-related data is collected.</p>
+      <p>AdMob may collect certain device and usage data to serve ads:</p>
       <ul>
-        <li>The currency pair being converted (e.g., USD to INR)</li>
-        <li>No personal or financial data is included in this request</li>
+        <li>Device identifiers (advertising ID)</li>
+        <li>IP address</li>
+        <li>General location (country/region level)</li>
+        <li>App interaction data (ad views, clicks)</li>
+        <li>Device information (model, OS version)</li>
       </ul>
-      <p>Exchange rates are cached locally with a 6-hour TTL, and conversions work offline using cached rates.</p>
+      <p>This data is collected by Google, not by Spent. We request non-personalized ads only. You can opt out of personalized advertising through your device settings. Premium subscribers enjoy a completely ad-free experience with no third-party data collection.</p>
+      <p>For more details, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
 
       <h2>7. Third-Party Services</h2>
-
-      <h3>a) Google AdMob</h3>
-      <p>Spent displays advertisements through Google AdMob. Google may collect device identifiers, IP address, and ad interaction data as described in <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. We do not share your financial data with Google. You can upgrade to Spent Pro to remove ads.</p>
-
-      <h3>b) In-App Purchases</h3>
-      <p>Spent Pro subscriptions are processed through Apple App Store or Google Play Store. Purchase transactions are handled entirely by Apple/Google. We do not have access to your payment information.</p>
-
-      <h3>c) Google ML Kit (Receipt Scanner)</h3>
-      <p>Spent uses Google ML Kit for on-device text recognition when scanning receipts. All OCR processing runs locally on your device — no images or text are sent to Google's servers. See <a href="https://developers.google.com/ml-kit/terms" target="_blank" rel="noopener">Google ML Kit Terms</a>.</p>
-
-      <h3>d) Notifications</h3>
-      <p>Spent uses local device notifications for daily reminders, weekly spending insights, budget alerts, subscription renewal reminders, and monthly reports. Push notification tokens may be generated by Firebase Cloud Messaging for Android. No personal financial data is transmitted through notifications. All notification types are individually toggleable in Settings.</p>
-
-      <h2>8. Biometric Authentication</h2>
-      <p>Spent supports Face ID, Touch ID, and Fingerprint authentication to secure app access. Biometric data is handled entirely by your device's operating system. Spent never accesses, stores, or transmits biometric templates — it only receives a success/failure response from the OS.</p>
-
-      <h2>9. Data Security</h2>
+      <p>Spent uses the following third-party services that may process limited data:</p>
       <ul>
-        <li>All data is stored in an encrypted SQLite database on your device</li>
-        <li>SHA-256 hashing is used for transaction fingerprinting (duplicate prevention)</li>
-        <li>Sensitive settings are stored using Expo SecureStore (Keychain on iOS, Encrypted SharedPreferences on Android)</li>
-        <li>Biometric authentication adds an additional layer of protection</li>
+        <li><strong>Google AdMob:</strong> Serves advertisements in the free version. Collects device identifiers and IP addresses per Google's policies. Only active after user consent.</li>
+        <li><strong>Exchange Rate API:</strong> Currency conversion rates are fetched via a Cloudflare Workers proxy. Only the currency pair is transmitted — no personal or financial data. Cloudflare may log your IP address as part of standard request processing.</li>
+        <li><strong>Apple App Store / Google Play Store:</strong> Subscription purchases are validated through platform-native APIs. The developer does not have access to your payment information. These platforms process payment data under their own privacy policies.</li>
+        <li><strong>Google ML Kit:</strong> Used for on-device receipt text recognition. All processing occurs locally — no data is sent to Google.</li>
+        <li><strong>Firebase Cloud Messaging:</strong> Generates Android notification tokens for local push notifications. No financial data is transmitted.</li>
       </ul>
 
-      <h2>10. Permissions Summary</h2>
-      <p>Spent requests the following permissions, all at runtime with your explicit consent:</p>
+      <h2>8. Data Security</h2>
+      <p>Your data is protected through multiple layers:</p>
       <ul>
-        <li><strong>Camera</strong> (iOS &amp; Android) — Capture receipt photos for OCR scanning. Requested when you tap "Take Photo" in Receipt Scanner.</li>
-        <li><strong>Photo Library</strong> (iOS &amp; Android) — Select receipt images from your gallery. Requested when you tap "Choose from Gallery" in Receipt Scanner.</li>
-        <li><strong>Notifications</strong> (iOS &amp; Android) — Daily reminders, budget alerts, subscription renewals, and weekly insights. Requested when you enable reminders in Settings.</li>
-        <li><strong>Biometrics</strong> (iOS &amp; Android) — App lock via Face ID, Touch ID, or Fingerprint. Requested when you enable Biometric Lock in Settings.</li>
-        <li><strong>Internet</strong> (Android) — Ad serving (free version) and exchange rate fetching. Automatic.</li>
+        <li>SQLite encryption for local database storage</li>
+        <li>SHA-256 hashing for duplicate transaction prevention</li>
+        <li>Expo SecureStore for sensitive settings</li>
+        <li>On-device processing for all financial data — nothing leaves your phone</li>
       </ul>
-      <p>Camera and photo data are processed entirely on-device and never uploaded.</p>
 
-      <h2>11. Data Export &amp; Deletion</h2>
-      <p><strong>Export:</strong> You can export your data at any time as CSV or PDF from the Reports screen.</p>
-      <p><strong>Deletion:</strong> Uninstalling the app permanently deletes all data since everything is stored locally. You can also delete individual transactions, accounts, or categories within the app.</p>
+      <h2>9. Data Retention &amp; Deletion</h2>
+      <p>All your data is stored locally on your device and persists until you either:</p>
+      <ul>
+        <li>Use the "Delete All Data" option in Settings to permanently erase all app data</li>
+        <li>Delete individual transactions, accounts, or categories within the app</li>
+        <li>Uninstall the app</li>
+      </ul>
+      <p>There is no server-side data to retain or expire.</p>
+
+      <h2>10. Your Rights (GDPR, CCPA &amp; Global)</h2>
+      <p>You have full control over your data:</p>
+      <ul>
+        <li><strong>Right to Access:</strong> Export all your transaction history via CSV or PDF from Settings &gt; Reports &amp; Export.</li>
+        <li><strong>Right to Erasure:</strong> Use "Delete All Data" in Settings to permanently erase all app data, or uninstall the app.</li>
+        <li><strong>Right to Data Portability:</strong> Export your data in CSV format at any time.</li>
+        <li><strong>Right to Withdraw Consent:</strong> You can withdraw ad consent by upgrading to Premium, which stops all ad-related data collection.</li>
+        <li><strong>Right to Object:</strong> Since all data is local, there is no profiling or automated decision-making to object to.</li>
+      </ul>
+
+      <h2>11. Permissions</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Permission</th>
+              <th>Platform</th>
+              <th>Purpose</th>
+              <th>When Requested</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Camera</td>
+              <td>iOS &amp; Android</td>
+              <td>Capture receipt photos for OCR scanning</td>
+              <td>When you tap "Take Photo" in Receipt Scanner</td>
+            </tr>
+            <tr>
+              <td>Photo Library</td>
+              <td>iOS &amp; Android</td>
+              <td>Select receipt images from gallery</td>
+              <td>When you tap "Choose from Gallery"</td>
+            </tr>
+            <tr>
+              <td>Notifications</td>
+              <td>iOS &amp; Android</td>
+              <td>Daily reminders, budget alerts, subscription renewals</td>
+              <td>When you enable reminders in Settings</td>
+            </tr>
+            <tr>
+              <td>Biometrics</td>
+              <td>iOS &amp; Android</td>
+              <td>App lock via Face ID / Touch ID / Fingerprint</td>
+              <td>When you enable Biometric Lock</td>
+            </tr>
+            <tr>
+              <td>Internet</td>
+              <td>Android</td>
+              <td>Ad serving (free version) and exchange rate fetching</td>
+              <td>Automatic</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>All permissions are requested at runtime — nothing is accessed without your explicit consent.</p>
 
       <h2>12. Children's Privacy</h2>
-      <p>Spent does not knowingly collect personal data from children. The app is intended for users aged 18 and above.</p>
+      <p>Spent is designed for users aged 18 and above. We do not knowingly collect personal data from children under 13 (or 16 in the EEA). If you believe a child has provided data through the app, please contact us.</p>
 
       <h2>13. Changes to This Policy</h2>
-      <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last Updated" date. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last Updated" date at the top of this page. Continued use of the App after changes constitutes acceptance. For material changes, we will notify you through App Store/Play Store update notes.</p>
 
-      <h2>14. Your Rights</h2>
-      <p>Since your data is stored locally on your device, you have full control over it at all times. You can view, export, modify, or delete any of your data directly within the app.</p>
-
-      <h2>15. Contact Us</h2>
-      <p>If you have questions about this Privacy Policy, please contact us at:</p>
+      <h2>14. Contact Us</h2>
+      <p>For any privacy-related questions, data requests, or concerns, please contact:</p>
       <p>
-        <strong>Email:</strong> <a href="mailto:rahulbhichher@gmail.com">rahulbhichher@gmail.com</a><br>
         <strong>Developer:</strong> Rahul Bhichher<br>
-        <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/bhichher" target="_blank" rel="noopener">linkedin.com/in/bhichher</a>
+        <strong>Email:</strong> <a href="mailto:rahulbhichher@gmail.com">rahulbhichher@gmail.com</a><br>
+        <strong>Website:</strong> <a href="https://rahulbhichher.github.io/">rahulbhichher.github.io</a>
       </p>
 
     </div>
