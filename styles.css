@@ -17,11 +17,11 @@
   --text-muted: #7b8a9e;
   --navy: #1a2744;
   --navy-light: #2a3a5c;
-  --green: #2ecc71;
-  --green-dark: #27ae60;
-  --green-light: #e8faf0;
+  --green: #0D9488;
+  --green-dark: #0B7C72;
+  --green-light: #e6f5f3;
   --navy-glow: rgba(26, 39, 68, 0.06);
-  --green-glow: rgba(46, 204, 113, 0.08);
+  --green-glow: rgba(13, 148, 136, 0.08);
   --radius: 16px;
   --radius-lg: 24px;
   --shadow-sm: 0 1px 3px rgba(26, 39, 68, 0.05);
@@ -35,7 +35,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -134,7 +134,7 @@ a:hover {
 
 .nav-links a.active {
   color: var(--green-dark);
-  background: #e8f5ee;
+  background: #e6f5f3;
   font-weight: 600;
 }
 
@@ -210,7 +210,7 @@ section {
 .hero-bg .blob-3 {
   width: 300px;
   height: 300px;
-  background: rgba(46, 204, 113, 0.05);
+  background: rgba(13, 148, 136, 0.05);
   top: 50%;
   left: 40%;
   animation-delay: -14s;
@@ -283,8 +283,8 @@ section {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
-  50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(46, 204, 113, 0); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(13, 148, 136, 0); }
 }
 
 .hero h1 {
@@ -362,14 +362,14 @@ section {
 .btn-green {
   background: var(--green);
   color: #fff;
-  box-shadow: 0 4px 16px rgba(46, 204, 113, 0.25);
+  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.25);
 }
 
 .btn-green:hover {
   background: var(--green-dark);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(46, 204, 113, 0.3);
+  box-shadow: 0 8px 28px rgba(13, 148, 136, 0.3);
 }
 
 .btn-coming-soon {
@@ -506,7 +506,7 @@ section {
 }
 
 .highlight-icon.green-bg {
-  background: #e8f5ee;
+  background: #e6f5f3;
   color: var(--green);
 }
 
@@ -600,7 +600,7 @@ section {
   width: 52px;
   height: 52px;
   border-radius: 14px;
-  background: #e8f5ee;
+  background: #e6f5f3;
   margin-bottom: 20px;
 }
 
@@ -652,7 +652,7 @@ section {
   right: -15%;
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, rgba(46, 204, 113, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.2) 0%, transparent 70%);
   pointer-events: none;
   animation: ctaOrb 15s ease-in-out infinite;
 }
@@ -690,7 +690,7 @@ section {
 }
 
 .cta .btn-green {
-  box-shadow: 0 4px 24px rgba(46, 204, 113, 0.35);
+  box-shadow: 0 4px 24px rgba(13, 148, 136, 0.35);
 }
 
 .cta .btn-secondary {
@@ -710,7 +710,7 @@ section {
   padding-top: 140px;
   padding-bottom: 48px;
   text-align: center;
-  background: linear-gradient(180deg, #f0faf4 0%, var(--bg-alt) 40%, var(--bg) 100%);
+  background: linear-gradient(180deg, #edf7f6 0%, var(--bg-alt) 40%, var(--bg) 100%);
   border-bottom: 1px solid var(--border);
 }
 
@@ -829,7 +829,7 @@ section {
 }
 
 .content-section tbody tr:hover td {
-  background: #e8f5ee;
+  background: #e6f5f3;
   transition: background 0.2s ease;
 }
 
@@ -904,7 +904,7 @@ section {
 }
 
 .contact-v2-icon.green-bg {
-  background: #e8f5ee;
+  background: #e6f5f3;
   color: var(--green);
 }
 
