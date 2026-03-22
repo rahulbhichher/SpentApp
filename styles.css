@@ -600,6 +600,130 @@ section {
   display: block;
 }
 
+/* === What's New Timeline === */
+.whats-new-section {
+  padding: 80px 0 100px;
+  text-align: center;
+  background: var(--bg);
+}
+
+.timeline {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 40px;
+  text-align: left;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--green), var(--navy));
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 36px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -40px;
+  top: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--green);
+  z-index: 1;
+}
+
+.timeline-dot.green {
+  background: var(--green);
+  box-shadow: 0 0 0 2px var(--green);
+}
+
+.timeline-dot.navy {
+  background: var(--navy);
+  box-shadow: 0 0 0 2px var(--navy);
+}
+
+.timeline-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 28px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--navy));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(26, 39, 68, 0.1);
+  border-color: var(--border-hover);
+}
+
+.timeline-content:hover::before {
+  opacity: 1;
+}
+
+.timeline-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+
+.timeline-tag.new {
+  background: #e6f5f3;
+  color: var(--green-dark);
+}
+
+.timeline-tag.improved {
+  background: #e8ecf4;
+  color: var(--navy);
+}
+
+.timeline-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.timeline-content p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* === Features Section === */
 .features-section {
   padding: 100px 0 80px;
@@ -1135,6 +1259,28 @@ section {
 
   .screenshot-card {
     width: 200px;
+  }
+
+  .whats-new-section {
+    padding: 60px 0 80px;
+  }
+
+  .timeline {
+    padding-left: 32px;
+  }
+
+  .timeline::before {
+    left: 7px;
+  }
+
+  .timeline-dot {
+    left: -32px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .timeline-content {
+    padding: 20px 22px;
   }
 
   .preview-banner {
