@@ -355,7 +355,8 @@
           const parent = entry.target.parentElement;
           const siblings = Array.from(parent.querySelectorAll('.fade-up'));
           const index = siblings.indexOf(entry.target);
-          entry.target.style.transitionDelay = (index * 0.08) + 's';
+          const delay = Math.min(index * 0.06, 0.4);
+          entry.target.style.transitionDelay = delay + 's';
           entry.target.classList.add('visible');
           fadeObserver.unobserve(entry.target);
         }
