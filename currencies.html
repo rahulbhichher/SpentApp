@@ -76,102 +76,409 @@
         </ul>
       </div>
 
-      <!-- Search -->
+      <!-- Search + Region Filter -->
       <div class="currency-search-wrapper">
         <svg class="currency-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="currencySearch" class="currency-search" placeholder="Search currencies (e.g. USD, Rupee, Euro...)">
+        <input type="text" id="currencySearch" class="currency-search" placeholder="Search currencies or countries (e.g. USD, India, Euro...)">
         <span id="searchCount" class="currency-search-count"></span>
       </div>
 
-      <!-- Currencies Table -->
-      <h2 id="currencies-heading">All 73 Currencies</h2>
-      <div class="table-wrapper">
-        <table id="currencyTable">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Code</th>
-              <th>Symbol</th>
-              <th>Currency Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>1</td><td>INR</td><td>₹</td><td>Indian Rupee</td></tr>
-            <tr><td>2</td><td>USD</td><td>$</td><td>US Dollar</td></tr>
-            <tr><td>3</td><td>EUR</td><td>€</td><td>Euro</td></tr>
-            <tr><td>4</td><td>GBP</td><td>£</td><td>British Pound</td></tr>
-            <tr><td>5</td><td>CAD</td><td>C$</td><td>Canadian Dollar</td></tr>
-            <tr><td>6</td><td>AUD</td><td>A$</td><td>Australian Dollar</td></tr>
-            <tr><td>7</td><td>NZD</td><td>NZ$</td><td>New Zealand Dollar</td></tr>
-            <tr><td>8</td><td>JPY</td><td>¥</td><td>Japanese Yen</td></tr>
-            <tr><td>9</td><td>CNY</td><td>¥</td><td>Chinese Yuan</td></tr>
-            <tr><td>10</td><td>CHF</td><td>Fr</td><td>Swiss Franc</td></tr>
-            <tr><td>11</td><td>SEK</td><td>kr</td><td>Swedish Krona</td></tr>
-            <tr><td>12</td><td>NOK</td><td>kr</td><td>Norwegian Krone</td></tr>
-            <tr><td>13</td><td>DKK</td><td>kr</td><td>Danish Krone</td></tr>
-            <tr><td>14</td><td>ISK</td><td>kr</td><td>Icelandic Króna</td></tr>
-            <tr><td>15</td><td>PLN</td><td>zł</td><td>Polish Zloty</td></tr>
-            <tr><td>16</td><td>CZK</td><td>Kč</td><td>Czech Koruna</td></tr>
-            <tr><td>17</td><td>HUF</td><td>Ft</td><td>Hungarian Forint</td></tr>
-            <tr><td>18</td><td>RON</td><td>lei</td><td>Romanian Leu</td></tr>
-            <tr><td>19</td><td>BGN</td><td>лв</td><td>Bulgarian Lev</td></tr>
-            <tr><td>20</td><td>RSD</td><td>din</td><td>Serbian Dinar</td></tr>
-            <tr><td>21</td><td>UAH</td><td>₴</td><td>Ukrainian Hryvnia</td></tr>
-            <tr><td>22</td><td>GEL</td><td>₾</td><td>Georgian Lari</td></tr>
-            <tr><td>23</td><td>RUB</td><td>₽</td><td>Russian Ruble</td></tr>
-            <tr><td>24</td><td>TRY</td><td>₺</td><td>Turkish Lira</td></tr>
-            <tr><td>25</td><td>AED</td><td>د.إ</td><td>UAE Dirham</td></tr>
-            <tr><td>26</td><td>SAR</td><td>﷼</td><td>Saudi Riyal</td></tr>
-            <tr><td>27</td><td>QAR</td><td>﷼</td><td>Qatari Riyal</td></tr>
-            <tr><td>28</td><td>KWD</td><td>د.ك</td><td>Kuwaiti Dinar</td></tr>
-            <tr><td>29</td><td>OMR</td><td>﷼</td><td>Omani Rial</td></tr>
-            <tr><td>30</td><td>BHD</td><td>BD</td><td>Bahraini Dinar</td></tr>
-            <tr><td>31</td><td>JOD</td><td>JD</td><td>Jordanian Dinar</td></tr>
-            <tr><td>32</td><td>LBP</td><td>ل.ل</td><td>Lebanese Pound</td></tr>
-            <tr><td>33</td><td>IQD</td><td>ع.د</td><td>Iraqi Dinar</td></tr>
-            <tr><td>34</td><td>ILS</td><td>₪</td><td>Israeli Shekel</td></tr>
-            <tr><td>35</td><td>EGP</td><td>E£</td><td>Egyptian Pound</td></tr>
-            <tr><td>36</td><td>PKR</td><td>₨</td><td>Pakistani Rupee</td></tr>
-            <tr><td>37</td><td>BDT</td><td>৳</td><td>Bangladeshi Taka</td></tr>
-            <tr><td>38</td><td>LKR</td><td>Rs</td><td>Sri Lankan Rupee</td></tr>
-            <tr><td>39</td><td>NPR</td><td>रू</td><td>Nepalese Rupee</td></tr>
-            <tr><td>40</td><td>KRW</td><td>₩</td><td>South Korean Won</td></tr>
-            <tr><td>41</td><td>TWD</td><td>NT$</td><td>Taiwan Dollar</td></tr>
-            <tr><td>42</td><td>HKD</td><td>HK$</td><td>Hong Kong Dollar</td></tr>
-            <tr><td>43</td><td>SGD</td><td>S$</td><td>Singapore Dollar</td></tr>
-            <tr><td>44</td><td>MYR</td><td>RM</td><td>Malaysian Ringgit</td></tr>
-            <tr><td>45</td><td>THB</td><td>฿</td><td>Thai Baht</td></tr>
-            <tr><td>46</td><td>IDR</td><td>Rp</td><td>Indonesian Rupiah</td></tr>
-            <tr><td>47</td><td>PHP</td><td>₱</td><td>Philippine Peso</td></tr>
-            <tr><td>48</td><td>VND</td><td>₫</td><td>Vietnamese Dong</td></tr>
-            <tr><td>49</td><td>MMK</td><td>K</td><td>Myanmar Kyat</td></tr>
-            <tr><td>50</td><td>KHR</td><td>៛</td><td>Cambodian Riel</td></tr>
-            <tr><td>51</td><td>KZT</td><td>₸</td><td>Kazakhstani Tenge</td></tr>
-            <tr><td>52</td><td>NGN</td><td>₦</td><td>Nigerian Naira</td></tr>
-            <tr><td>53</td><td>ZAR</td><td>R</td><td>South African Rand</td></tr>
-            <tr><td>54</td><td>KES</td><td>KSh</td><td>Kenyan Shilling</td></tr>
-            <tr><td>55</td><td>GHS</td><td>GH₵</td><td>Ghanaian Cedi</td></tr>
-            <tr><td>56</td><td>ETB</td><td>Br</td><td>Ethiopian Birr</td></tr>
-            <tr><td>57</td><td>TZS</td><td>TSh</td><td>Tanzanian Shilling</td></tr>
-            <tr><td>58</td><td>UGX</td><td>USh</td><td>Ugandan Shilling</td></tr>
-            <tr><td>59</td><td>MAD</td><td>MAD</td><td>Moroccan Dirham</td></tr>
-            <tr><td>60</td><td>XOF</td><td>CFA</td><td>West African CFA Franc</td></tr>
-            <tr><td>61</td><td>XAF</td><td>FCFA</td><td>Central African CFA Franc</td></tr>
-            <tr><td>62</td><td>BRL</td><td>R$</td><td>Brazilian Real</td></tr>
-            <tr><td>63</td><td>MXN</td><td>MX$</td><td>Mexican Peso</td></tr>
-            <tr><td>64</td><td>ARS</td><td>$</td><td>Argentine Peso</td></tr>
-            <tr><td>65</td><td>COP</td><td>COL$</td><td>Colombian Peso</td></tr>
-            <tr><td>66</td><td>CLP</td><td>CL$</td><td>Chilean Peso</td></tr>
-            <tr><td>67</td><td>PEN</td><td>S/</td><td>Peruvian Sol</td></tr>
-            <tr><td>68</td><td>UYU</td><td>$U</td><td>Uruguayan Peso</td></tr>
-            <tr><td>69</td><td>CRC</td><td>₡</td><td>Costa Rican Colón</td></tr>
-            <tr><td>70</td><td>DOP</td><td>RD$</td><td>Dominican Peso</td></tr>
-            <tr><td>71</td><td>GTQ</td><td>Q</td><td>Guatemalan Quetzal</td></tr>
-            <tr><td>72</td><td>JMD</td><td>J$</td><td>Jamaican Dollar</td></tr>
-            <tr><td>73</td><td>TTD</td><td>TT$</td><td>Trinidad & Tobago Dollar</td></tr>
-          </tbody>
-        </table>
+      <div class="region-tabs" id="regionTabs">
+        <button class="region-tab active" data-region="all">All</button>
+        <button class="region-tab" data-region="south-asia">South Asia</button>
+        <button class="region-tab" data-region="americas">Americas</button>
+        <button class="region-tab" data-region="europe">Europe</button>
+        <button class="region-tab" data-region="middle-east">Middle East</button>
+        <button class="region-tab" data-region="east-asia">East & SE Asia</button>
+        <button class="region-tab" data-region="africa">Africa</button>
+        <button class="region-tab" data-region="oceania">Oceania</button>
       </div>
+
+      <!-- Currency Cards Grid -->
+      <h2 id="currencies-heading">All 73 Currencies</h2>
+      <div class="currency-card-grid" id="currencyGrid">
+
+        <!-- South Asia -->
+        <div class="cc" data-region="south-asia" data-search="inr indian rupee india">
+          <span class="cc-flag">&#127470;&#127475;</span>
+          <div class="cc-info"><span class="cc-code">INR</span><span class="cc-name">Indian Rupee</span></div>
+          <span class="cc-symbol">&#8377;</span>
+        </div>
+        <div class="cc" data-region="south-asia" data-search="pkr pakistani rupee pakistan">
+          <span class="cc-flag">&#127477;&#127472;</span>
+          <div class="cc-info"><span class="cc-code">PKR</span><span class="cc-name">Pakistani Rupee</span></div>
+          <span class="cc-symbol">&#8360;</span>
+        </div>
+        <div class="cc" data-region="south-asia" data-search="bdt bangladeshi taka bangladesh">
+          <span class="cc-flag">&#127463;&#127465;</span>
+          <div class="cc-info"><span class="cc-code">BDT</span><span class="cc-name">Bangladeshi Taka</span></div>
+          <span class="cc-symbol">&#2547;</span>
+        </div>
+        <div class="cc" data-region="south-asia" data-search="lkr sri lankan rupee sri lanka">
+          <span class="cc-flag">&#127473;&#127472;</span>
+          <div class="cc-info"><span class="cc-code">LKR</span><span class="cc-name">Sri Lankan Rupee</span></div>
+          <span class="cc-symbol">Rs</span>
+        </div>
+        <div class="cc" data-region="south-asia" data-search="npr nepalese rupee nepal">
+          <span class="cc-flag">&#127475;&#127477;</span>
+          <div class="cc-info"><span class="cc-code">NPR</span><span class="cc-name">Nepalese Rupee</span></div>
+          <span class="cc-symbol">&#2352;&#2370;</span>
+        </div>
+
+        <!-- Americas -->
+        <div class="cc" data-region="americas" data-search="usd us dollar united states america">
+          <span class="cc-flag">&#127482;&#127480;</span>
+          <div class="cc-info"><span class="cc-code">USD</span><span class="cc-name">US Dollar</span></div>
+          <span class="cc-symbol">$</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="cad canadian dollar canada">
+          <span class="cc-flag">&#127464;&#127462;</span>
+          <div class="cc-info"><span class="cc-code">CAD</span><span class="cc-name">Canadian Dollar</span></div>
+          <span class="cc-symbol">C$</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="brl brazilian real brazil">
+          <span class="cc-flag">&#127463;&#127479;</span>
+          <div class="cc-info"><span class="cc-code">BRL</span><span class="cc-name">Brazilian Real</span></div>
+          <span class="cc-symbol">R$</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="mxn mexican peso mexico">
+          <span class="cc-flag">&#127474;&#127485;</span>
+          <div class="cc-info"><span class="cc-code">MXN</span><span class="cc-name">Mexican Peso</span></div>
+          <span class="cc-symbol">MX$</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="ars argentine peso argentina">
+          <span class="cc-flag">&#127462;&#127479;</span>
+          <div class="cc-info"><span class="cc-code">ARS</span><span class="cc-name">Argentine Peso</span></div>
+          <span class="cc-symbol">$</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="cop colombian peso colombia">
+          <span class="cc-flag">&#127464;&#127476;</span>
+          <div class="cc-info"><span class="cc-code">COP</span><span class="cc-name">Colombian Peso</span></div>
+          <span class="cc-symbol">COL$</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="clp chilean peso chile">
+          <span class="cc-flag">&#127464;&#127473;</span>
+          <div class="cc-info"><span class="cc-code">CLP</span><span class="cc-name">Chilean Peso</span></div>
+          <span class="cc-symbol">CL$</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="pen peruvian sol peru">
+          <span class="cc-flag">&#127477;&#127466;</span>
+          <div class="cc-info"><span class="cc-code">PEN</span><span class="cc-name">Peruvian Sol</span></div>
+          <span class="cc-symbol">S/</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="uyu uruguayan peso uruguay">
+          <span class="cc-flag">&#127482;&#127486;</span>
+          <div class="cc-info"><span class="cc-code">UYU</span><span class="cc-name">Uruguayan Peso</span></div>
+          <span class="cc-symbol">$U</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="crc costa rican colon costa rica">
+          <span class="cc-flag">&#127464;&#127479;</span>
+          <div class="cc-info"><span class="cc-code">CRC</span><span class="cc-name">Costa Rican Col&#243;n</span></div>
+          <span class="cc-symbol">&#8353;</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="dop dominican peso dominican republic">
+          <span class="cc-flag">&#127465;&#127476;</span>
+          <div class="cc-info"><span class="cc-code">DOP</span><span class="cc-name">Dominican Peso</span></div>
+          <span class="cc-symbol">RD$</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="gtq guatemalan quetzal guatemala">
+          <span class="cc-flag">&#127468;&#127481;</span>
+          <div class="cc-info"><span class="cc-code">GTQ</span><span class="cc-name">Guatemalan Quetzal</span></div>
+          <span class="cc-symbol">Q</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="jmd jamaican dollar jamaica">
+          <span class="cc-flag">&#127471;&#127474;</span>
+          <div class="cc-info"><span class="cc-code">JMD</span><span class="cc-name">Jamaican Dollar</span></div>
+          <span class="cc-symbol">J$</span>
+        </div>
+        <div class="cc" data-region="americas" data-search="ttd trinidad tobago dollar">
+          <span class="cc-flag">&#127481;&#127481;</span>
+          <div class="cc-info"><span class="cc-code">TTD</span><span class="cc-name">Trinidad &amp; Tobago Dollar</span></div>
+          <span class="cc-symbol">TT$</span>
+        </div>
+
+        <!-- Europe -->
+        <div class="cc" data-region="europe" data-search="eur euro europe germany france italy spain">
+          <span class="cc-flag">&#127466;&#127482;</span>
+          <div class="cc-info"><span class="cc-code">EUR</span><span class="cc-name">Euro</span></div>
+          <span class="cc-symbol">&euro;</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="gbp british pound united kingdom uk england">
+          <span class="cc-flag">&#127468;&#127463;</span>
+          <div class="cc-info"><span class="cc-code">GBP</span><span class="cc-name">British Pound</span></div>
+          <span class="cc-symbol">&pound;</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="chf swiss franc switzerland">
+          <span class="cc-flag">&#127464;&#127469;</span>
+          <div class="cc-info"><span class="cc-code">CHF</span><span class="cc-name">Swiss Franc</span></div>
+          <span class="cc-symbol">Fr</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="sek swedish krona sweden">
+          <span class="cc-flag">&#127480;&#127466;</span>
+          <div class="cc-info"><span class="cc-code">SEK</span><span class="cc-name">Swedish Krona</span></div>
+          <span class="cc-symbol">kr</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="nok norwegian krone norway">
+          <span class="cc-flag">&#127475;&#127476;</span>
+          <div class="cc-info"><span class="cc-code">NOK</span><span class="cc-name">Norwegian Krone</span></div>
+          <span class="cc-symbol">kr</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="dkk danish krone denmark">
+          <span class="cc-flag">&#127465;&#127472;</span>
+          <div class="cc-info"><span class="cc-code">DKK</span><span class="cc-name">Danish Krone</span></div>
+          <span class="cc-symbol">kr</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="isk icelandic krona iceland">
+          <span class="cc-flag">&#127470;&#127480;</span>
+          <div class="cc-info"><span class="cc-code">ISK</span><span class="cc-name">Icelandic Kr&#243;na</span></div>
+          <span class="cc-symbol">kr</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="pln polish zloty poland">
+          <span class="cc-flag">&#127477;&#127473;</span>
+          <div class="cc-info"><span class="cc-code">PLN</span><span class="cc-name">Polish Zloty</span></div>
+          <span class="cc-symbol">z&#322;</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="czk czech koruna czech republic czechia">
+          <span class="cc-flag">&#127464;&#127487;</span>
+          <div class="cc-info"><span class="cc-code">CZK</span><span class="cc-name">Czech Koruna</span></div>
+          <span class="cc-symbol">K&#269;</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="huf hungarian forint hungary">
+          <span class="cc-flag">&#127469;&#127482;</span>
+          <div class="cc-info"><span class="cc-code">HUF</span><span class="cc-name">Hungarian Forint</span></div>
+          <span class="cc-symbol">Ft</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="ron romanian leu romania">
+          <span class="cc-flag">&#127479;&#127476;</span>
+          <div class="cc-info"><span class="cc-code">RON</span><span class="cc-name">Romanian Leu</span></div>
+          <span class="cc-symbol">lei</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="bgn bulgarian lev bulgaria">
+          <span class="cc-flag">&#127463;&#127468;</span>
+          <div class="cc-info"><span class="cc-code">BGN</span><span class="cc-name">Bulgarian Lev</span></div>
+          <span class="cc-symbol">&#1083;&#1074;</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="rsd serbian dinar serbia">
+          <span class="cc-flag">&#127479;&#127480;</span>
+          <div class="cc-info"><span class="cc-code">RSD</span><span class="cc-name">Serbian Dinar</span></div>
+          <span class="cc-symbol">din</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="uah ukrainian hryvnia ukraine">
+          <span class="cc-flag">&#127482;&#127462;</span>
+          <div class="cc-info"><span class="cc-code">UAH</span><span class="cc-name">Ukrainian Hryvnia</span></div>
+          <span class="cc-symbol">&#8372;</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="gel georgian lari georgia">
+          <span class="cc-flag">&#127468;&#127466;</span>
+          <div class="cc-info"><span class="cc-code">GEL</span><span class="cc-name">Georgian Lari</span></div>
+          <span class="cc-symbol">&#8382;</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="rub russian ruble russia">
+          <span class="cc-flag">&#127479;&#127482;</span>
+          <div class="cc-info"><span class="cc-code">RUB</span><span class="cc-name">Russian Ruble</span></div>
+          <span class="cc-symbol">&#8381;</span>
+        </div>
+        <div class="cc" data-region="europe" data-search="try turkish lira turkey">
+          <span class="cc-flag">&#127481;&#127479;</span>
+          <div class="cc-info"><span class="cc-code">TRY</span><span class="cc-name">Turkish Lira</span></div>
+          <span class="cc-symbol">&#8378;</span>
+        </div>
+
+        <!-- Middle East -->
+        <div class="cc" data-region="middle-east" data-search="aed uae dirham united arab emirates">
+          <span class="cc-flag">&#127462;&#127466;</span>
+          <div class="cc-info"><span class="cc-code">AED</span><span class="cc-name">UAE Dirham</span></div>
+          <span class="cc-symbol">&#1583;.&#1573;</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="sar saudi riyal saudi arabia">
+          <span class="cc-flag">&#127480;&#127462;</span>
+          <div class="cc-info"><span class="cc-code">SAR</span><span class="cc-name">Saudi Riyal</span></div>
+          <span class="cc-symbol">&#65020;</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="qar qatari riyal qatar">
+          <span class="cc-flag">&#127478;&#127462;</span>
+          <div class="cc-info"><span class="cc-code">QAR</span><span class="cc-name">Qatari Riyal</span></div>
+          <span class="cc-symbol">&#65020;</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="kwd kuwaiti dinar kuwait">
+          <span class="cc-flag">&#127472;&#127484;</span>
+          <div class="cc-info"><span class="cc-code">KWD</span><span class="cc-name">Kuwaiti Dinar</span></div>
+          <span class="cc-symbol">&#1583;.&#1603;</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="omr omani rial oman">
+          <span class="cc-flag">&#127476;&#127474;</span>
+          <div class="cc-info"><span class="cc-code">OMR</span><span class="cc-name">Omani Rial</span></div>
+          <span class="cc-symbol">&#65020;</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="bhd bahraini dinar bahrain">
+          <span class="cc-flag">&#127463;&#127469;</span>
+          <div class="cc-info"><span class="cc-code">BHD</span><span class="cc-name">Bahraini Dinar</span></div>
+          <span class="cc-symbol">BD</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="jod jordanian dinar jordan">
+          <span class="cc-flag">&#127471;&#127476;</span>
+          <div class="cc-info"><span class="cc-code">JOD</span><span class="cc-name">Jordanian Dinar</span></div>
+          <span class="cc-symbol">JD</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="lbp lebanese pound lebanon">
+          <span class="cc-flag">&#127473;&#127463;</span>
+          <div class="cc-info"><span class="cc-code">LBP</span><span class="cc-name">Lebanese Pound</span></div>
+          <span class="cc-symbol">&#1604;.&#1604;</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="iqd iraqi dinar iraq">
+          <span class="cc-flag">&#127470;&#127478;</span>
+          <div class="cc-info"><span class="cc-code">IQD</span><span class="cc-name">Iraqi Dinar</span></div>
+          <span class="cc-symbol">&#1593;.&#1583;</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="ils israeli shekel israel">
+          <span class="cc-flag">&#127470;&#127473;</span>
+          <div class="cc-info"><span class="cc-code">ILS</span><span class="cc-name">Israeli Shekel</span></div>
+          <span class="cc-symbol">&#8362;</span>
+        </div>
+        <div class="cc" data-region="middle-east" data-search="egp egyptian pound egypt">
+          <span class="cc-flag">&#127466;&#127468;</span>
+          <div class="cc-info"><span class="cc-code">EGP</span><span class="cc-name">Egyptian Pound</span></div>
+          <span class="cc-symbol">E&pound;</span>
+        </div>
+
+        <!-- East & SE Asia -->
+        <div class="cc" data-region="east-asia" data-search="jpy japanese yen japan">
+          <span class="cc-flag">&#127471;&#127477;</span>
+          <div class="cc-info"><span class="cc-code">JPY</span><span class="cc-name">Japanese Yen</span></div>
+          <span class="cc-symbol">&yen;</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="cny chinese yuan china">
+          <span class="cc-flag">&#127464;&#127475;</span>
+          <div class="cc-info"><span class="cc-code">CNY</span><span class="cc-name">Chinese Yuan</span></div>
+          <span class="cc-symbol">&yen;</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="krw south korean won korea">
+          <span class="cc-flag">&#127472;&#127479;</span>
+          <div class="cc-info"><span class="cc-code">KRW</span><span class="cc-name">South Korean Won</span></div>
+          <span class="cc-symbol">&#8361;</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="twd taiwan dollar taiwan">
+          <span class="cc-flag">&#127481;&#127484;</span>
+          <div class="cc-info"><span class="cc-code">TWD</span><span class="cc-name">Taiwan Dollar</span></div>
+          <span class="cc-symbol">NT$</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="hkd hong kong dollar">
+          <span class="cc-flag">&#127469;&#127472;</span>
+          <div class="cc-info"><span class="cc-code">HKD</span><span class="cc-name">Hong Kong Dollar</span></div>
+          <span class="cc-symbol">HK$</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="sgd singapore dollar">
+          <span class="cc-flag">&#127480;&#127468;</span>
+          <div class="cc-info"><span class="cc-code">SGD</span><span class="cc-name">Singapore Dollar</span></div>
+          <span class="cc-symbol">S$</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="myr malaysian ringgit malaysia">
+          <span class="cc-flag">&#127474;&#127486;</span>
+          <div class="cc-info"><span class="cc-code">MYR</span><span class="cc-name">Malaysian Ringgit</span></div>
+          <span class="cc-symbol">RM</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="thb thai baht thailand">
+          <span class="cc-flag">&#127481;&#127469;</span>
+          <div class="cc-info"><span class="cc-code">THB</span><span class="cc-name">Thai Baht</span></div>
+          <span class="cc-symbol">&#3647;</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="idr indonesian rupiah indonesia">
+          <span class="cc-flag">&#127470;&#127465;</span>
+          <div class="cc-info"><span class="cc-code">IDR</span><span class="cc-name">Indonesian Rupiah</span></div>
+          <span class="cc-symbol">Rp</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="php philippine peso philippines">
+          <span class="cc-flag">&#127477;&#127469;</span>
+          <div class="cc-info"><span class="cc-code">PHP</span><span class="cc-name">Philippine Peso</span></div>
+          <span class="cc-symbol">&#8369;</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="vnd vietnamese dong vietnam">
+          <span class="cc-flag">&#127483;&#127475;</span>
+          <div class="cc-info"><span class="cc-code">VND</span><span class="cc-name">Vietnamese Dong</span></div>
+          <span class="cc-symbol">&#8363;</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="mmk myanmar kyat">
+          <span class="cc-flag">&#127474;&#127474;</span>
+          <div class="cc-info"><span class="cc-code">MMK</span><span class="cc-name">Myanmar Kyat</span></div>
+          <span class="cc-symbol">K</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="khr cambodian riel cambodia">
+          <span class="cc-flag">&#127472;&#127469;</span>
+          <div class="cc-info"><span class="cc-code">KHR</span><span class="cc-name">Cambodian Riel</span></div>
+          <span class="cc-symbol">&#6107;</span>
+        </div>
+        <div class="cc" data-region="east-asia" data-search="kzt kazakhstani tenge kazakhstan">
+          <span class="cc-flag">&#127472;&#127487;</span>
+          <div class="cc-info"><span class="cc-code">KZT</span><span class="cc-name">Kazakhstani Tenge</span></div>
+          <span class="cc-symbol">&#8376;</span>
+        </div>
+
+        <!-- Africa -->
+        <div class="cc" data-region="africa" data-search="ngn nigerian naira nigeria">
+          <span class="cc-flag">&#127475;&#127468;</span>
+          <div class="cc-info"><span class="cc-code">NGN</span><span class="cc-name">Nigerian Naira</span></div>
+          <span class="cc-symbol">&#8358;</span>
+        </div>
+        <div class="cc" data-region="africa" data-search="zar south african rand south africa">
+          <span class="cc-flag">&#127487;&#127462;</span>
+          <div class="cc-info"><span class="cc-code">ZAR</span><span class="cc-name">South African Rand</span></div>
+          <span class="cc-symbol">R</span>
+        </div>
+        <div class="cc" data-region="africa" data-search="kes kenyan shilling kenya">
+          <span class="cc-flag">&#127472;&#127466;</span>
+          <div class="cc-info"><span class="cc-code">KES</span><span class="cc-name">Kenyan Shilling</span></div>
+          <span class="cc-symbol">KSh</span>
+        </div>
+        <div class="cc" data-region="africa" data-search="ghs ghanaian cedi ghana">
+          <span class="cc-flag">&#127468;&#127469;</span>
+          <div class="cc-info"><span class="cc-code">GHS</span><span class="cc-name">Ghanaian Cedi</span></div>
+          <span class="cc-symbol">GH&#8373;</span>
+        </div>
+        <div class="cc" data-region="africa" data-search="etb ethiopian birr ethiopia">
+          <span class="cc-flag">&#127466;&#127481;</span>
+          <div class="cc-info"><span class="cc-code">ETB</span><span class="cc-name">Ethiopian Birr</span></div>
+          <span class="cc-symbol">Br</span>
+        </div>
+        <div class="cc" data-region="africa" data-search="tzs tanzanian shilling tanzania">
+          <span class="cc-flag">&#127481;&#127487;</span>
+          <div class="cc-info"><span class="cc-code">TZS</span><span class="cc-name">Tanzanian Shilling</span></div>
+          <span class="cc-symbol">TSh</span>
+        </div>
+        <div class="cc" data-region="africa" data-search="ugx ugandan shilling uganda">
+          <span class="cc-flag">&#127482;&#127468;</span>
+          <div class="cc-info"><span class="cc-code">UGX</span><span class="cc-name">Ugandan Shilling</span></div>
+          <span class="cc-symbol">USh</span>
+        </div>
+        <div class="cc" data-region="africa" data-search="mad moroccan dirham morocco">
+          <span class="cc-flag">&#127474;&#127462;</span>
+          <div class="cc-info"><span class="cc-code">MAD</span><span class="cc-name">Moroccan Dirham</span></div>
+          <span class="cc-symbol">MAD</span>
+        </div>
+        <div class="cc" data-region="africa" data-search="xof west african cfa franc senegal ivory coast">
+          <span class="cc-flag">&#127480;&#127475;</span>
+          <div class="cc-info"><span class="cc-code">XOF</span><span class="cc-name">West African CFA</span></div>
+          <span class="cc-symbol">CFA</span>
+        </div>
+        <div class="cc" data-region="africa" data-search="xaf central african cfa franc cameroon">
+          <span class="cc-flag">&#127464;&#127474;</span>
+          <div class="cc-info"><span class="cc-code">XAF</span><span class="cc-name">Central African CFA</span></div>
+          <span class="cc-symbol">FCFA</span>
+        </div>
+
+        <!-- Oceania -->
+        <div class="cc" data-region="oceania" data-search="aud australian dollar australia">
+          <span class="cc-flag">&#127462;&#127482;</span>
+          <div class="cc-info"><span class="cc-code">AUD</span><span class="cc-name">Australian Dollar</span></div>
+          <span class="cc-symbol">A$</span>
+        </div>
+        <div class="cc" data-region="oceania" data-search="nzd new zealand dollar">
+          <span class="cc-flag">&#127475;&#127487;</span>
+          <div class="cc-info"><span class="cc-code">NZD</span><span class="cc-name">New Zealand Dollar</span></div>
+          <span class="cc-symbol">NZ$</span>
+        </div>
+
+      </div>
+
       <p id="noResults" class="currency-no-results" style="display:none;">No currencies match your search.</p>
 
       <!-- Countries Section -->
@@ -180,99 +487,99 @@
 
       <div class="country-grid">
         <div class="country-region">
-          <h3>South Asia <span class="region-count">5</span></h3>
+          <h3>&#127470;&#127475; South Asia <span class="region-count">5</span></h3>
           <ul>
             <li>India</li><li>Pakistan</li><li>Bangladesh</li><li>Sri Lanka</li><li>Nepal</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>North America <span class="region-count">2</span></h3>
+          <h3>&#127482;&#127480; North America <span class="region-count">2</span></h3>
           <ul>
             <li>United States</li><li>Canada</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Western Europe <span class="region-count">9</span></h3>
+          <h3>&#127468;&#127463; Western Europe <span class="region-count">9</span></h3>
           <ul>
             <li>United Kingdom</li><li>Germany</li><li>France</li><li>Netherlands</li><li>Belgium</li><li>Luxembourg</li><li>Switzerland</li><li>Austria</li><li>Ireland</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Southern Europe <span class="region-count">6</span></h3>
+          <h3>&#127470;&#127481; Southern Europe <span class="region-count">6</span></h3>
           <ul>
             <li>Italy</li><li>Spain</li><li>Portugal</li><li>Greece</li><li>Malta</li><li>Cyprus</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Northern Europe <span class="region-count">5</span></h3>
+          <h3>&#127480;&#127466; Northern Europe <span class="region-count">5</span></h3>
           <ul>
             <li>Sweden</li><li>Norway</li><li>Denmark</li><li>Finland</li><li>Iceland</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Central & Eastern Europe <span class="region-count">16</span></h3>
+          <h3>&#127477;&#127473; Central &amp; Eastern Europe <span class="region-count">16</span></h3>
           <ul>
             <li>Poland</li><li>Czech Republic</li><li>Hungary</li><li>Romania</li><li>Bulgaria</li><li>Slovakia</li><li>Slovenia</li><li>Croatia</li><li>Serbia</li><li>Bosnia</li><li>Albania</li><li>North Macedonia</li><li>Montenegro</li><li>Lithuania</li><li>Latvia</li><li>Estonia</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Eastern Europe <span class="region-count">7</span></h3>
+          <h3>&#127479;&#127482; Eastern Europe <span class="region-count">6</span></h3>
           <ul>
             <li>Russia</li><li>Ukraine</li><li>Belarus</li><li>Moldova</li><li>Georgia</li><li>Turkey</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Middle East <span class="region-count">10</span></h3>
+          <h3>&#127462;&#127466; Middle East <span class="region-count">11</span></h3>
           <ul>
             <li>UAE</li><li>Saudi Arabia</li><li>Qatar</li><li>Kuwait</li><li>Oman</li><li>Bahrain</li><li>Jordan</li><li>Lebanon</li><li>Iraq</li><li>Israel</li><li>Egypt</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>East Asia <span class="region-count">6</span></h3>
+          <h3>&#127471;&#127477; East Asia <span class="region-count">6</span></h3>
           <ul>
             <li>Japan</li><li>China</li><li>South Korea</li><li>Taiwan</li><li>Hong Kong</li><li>Mongolia</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Southeast Asia <span class="region-count">8</span></h3>
+          <h3>&#127480;&#127468; Southeast Asia <span class="region-count">8</span></h3>
           <ul>
             <li>Singapore</li><li>Indonesia</li><li>Thailand</li><li>Malaysia</li><li>Philippines</li><li>Vietnam</li><li>Myanmar</li><li>Cambodia</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Central Asia <span class="region-count">4</span></h3>
+          <h3>&#127472;&#127487; Central Asia <span class="region-count">4</span></h3>
           <ul>
             <li>Kazakhstan</li><li>Uzbekistan</li><li>Azerbaijan</li><li>Armenia</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Oceania <span class="region-count">4</span></h3>
+          <h3>&#127462;&#127482; Oceania <span class="region-count">4</span></h3>
           <ul>
             <li>Australia</li><li>New Zealand</li><li>Papua New Guinea</li><li>Fiji</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>North Africa <span class="region-count">3</span></h3>
+          <h3>&#127474;&#127462; North Africa <span class="region-count">3</span></h3>
           <ul>
             <li>Morocco</li><li>Algeria</li><li>Tunisia</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Sub-Saharan Africa <span class="region-count">14</span></h3>
+          <h3>&#127475;&#127468; Sub-Saharan Africa <span class="region-count">14</span></h3>
           <ul>
             <li>Nigeria</li><li>South Africa</li><li>Kenya</li><li>Ghana</li><li>Ethiopia</li><li>Tanzania</li><li>Uganda</li><li>Rwanda</li><li>Senegal</li><li>Ivory Coast</li><li>Cameroon</li><li>Zambia</li><li>Mozambique</li><li>Zimbabwe</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Latin America <span class="region-count">11</span></h3>
+          <h3>&#127463;&#127479; Latin America <span class="region-count">11</span></h3>
           <ul>
             <li>Brazil</li><li>Mexico</li><li>Argentina</li><li>Colombia</li><li>Chile</li><li>Peru</li><li>Ecuador</li><li>Venezuela</li><li>Bolivia</li><li>Paraguay</li><li>Uruguay</li>
           </ul>
         </div>
         <div class="country-region">
-          <h3>Central America & Caribbean <span class="region-count">6</span></h3>
+          <h3>&#127464;&#127479; Central America &amp; Caribbean <span class="region-count">6</span></h3>
           <ul>
-            <li>Costa Rica</li><li>Panama</li><li>Guatemala</li><li>Dominican Republic</li><li>Jamaica</li><li>Trinidad & Tobago</li>
+            <li>Costa Rica</li><li>Panama</li><li>Guatemala</li><li>Dominican Republic</li><li>Jamaica</li><li>Trinidad &amp; Tobago</li>
           </ul>
         </div>
       </div>
@@ -304,24 +611,41 @@
       link.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
     });
 
-    // Currency search
+    // Elements
     const search = document.getElementById('currencySearch');
-    const table = document.getElementById('currencyTable');
-    const rows = table.querySelectorAll('tbody tr');
+    const grid = document.getElementById('currencyGrid');
+    const cards = grid.querySelectorAll('.cc');
     const noResults = document.getElementById('noResults');
     const searchCount = document.getElementById('searchCount');
+    const tabs = document.querySelectorAll('.region-tab');
+    let activeRegion = 'all';
 
-    search.addEventListener('input', function() {
-      const q = this.value.toLowerCase().trim();
+    // Filter function
+    function filterCards() {
+      const q = search.value.toLowerCase().trim();
       let visible = 0;
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        const show = !q || text.includes(q);
-        row.style.display = show ? '' : 'none';
+      cards.forEach(card => {
+        const matchRegion = activeRegion === 'all' || card.dataset.region === activeRegion;
+        const matchSearch = !q || card.dataset.search.includes(q) || card.querySelector('.cc-code').textContent.toLowerCase().includes(q) || card.querySelector('.cc-name').textContent.toLowerCase().includes(q);
+        const show = matchRegion && matchSearch;
+        card.style.display = show ? '' : 'none';
         if (show) visible++;
       });
-      noResults.style.display = (q && visible === 0) ? '' : 'none';
-      searchCount.textContent = q ? visible + ' of 73' : '';
+      noResults.style.display = visible === 0 ? '' : 'none';
+      searchCount.textContent = (q || activeRegion !== 'all') ? visible + ' of 73' : '';
+    }
+
+    // Search
+    search.addEventListener('input', filterCards);
+
+    // Region tabs
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        activeRegion = this.dataset.region;
+        filterCards();
+      });
     });
   </script>
 </body>

@@ -1755,7 +1755,7 @@ a.hero-tag {
 
 /* === Currencies Page === */
 .currencies-page {
-  max-width: 860px;
+  max-width: 960px;
 }
 
 .currency-stats {
@@ -1820,7 +1820,7 @@ a.hero-tag {
 
 .currency-search-wrapper {
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .currency-search-icon {
@@ -1868,6 +1868,99 @@ a.hero-tag {
   padding: 24px;
   color: var(--text-muted);
   font-size: 0.93rem;
+}
+
+/* Region Tabs */
+.region-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.region-tab {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.region-tab:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.region-tab.active {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+/* Currency Card Grid */
+.currency-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.cc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.cc:hover {
+  border-color: var(--green);
+  box-shadow: 0 2px 12px rgba(13, 148, 136, 0.1);
+  transform: translateY(-1px);
+}
+
+.cc-flag {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.cc-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.cc-code {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+}
+
+.cc-name {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cc-symbol {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--green);
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 /* Country Grid */
@@ -1948,8 +2041,18 @@ a.hero-tag {
   .currency-stat-number {
     font-size: 1.5rem;
   }
+  .currency-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .country-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .region-tabs {
+    gap: 6px;
+  }
+  .region-tab {
+    padding: 5px 12px;
+    font-size: 0.78rem;
   }
 }
 
@@ -1967,6 +2070,19 @@ a.hero-tag {
   }
   .currency-stat-number {
     font-size: 1.3rem;
+  }
+  .currency-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cc {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .cc-flag {
+    font-size: 1.3rem;
+  }
+  .cc-symbol {
+    display: none;
   }
   .country-grid {
     grid-template-columns: 1fr;
