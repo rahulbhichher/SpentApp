@@ -20,8 +20,19 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="has-promo">
   <a href="#main" class="skip-to-content">Skip to content</a>
+
+  <!-- Launch Promo Banner -->
+  <div class="promo-banner" id="promoBanner">
+    <div class="promo-banner-inner">
+      <span class="promo-banner-text">
+        <strong>Launch Deal</strong> — Get Spent Pro Lifetime for just <strong>&#8377;99</strong> <span class="promo-original-price">&#8377;499</span> <span class="promo-badge">80% OFF</span>
+      </span>
+      <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="promo-banner-cta" target="_blank" rel="noopener">Claim Now</a>
+      <button class="promo-banner-close" onclick="document.getElementById('promoBanner').style.display='none';document.body.classList.remove('has-promo')" aria-label="Dismiss">&times;</button>
+    </div>
+  </div>
 
   <!-- Nav -->
   <nav class="nav" id="nav">
@@ -418,8 +429,9 @@
   <section class="cta">
     <div class="container">
       <div class="cta-box fade-up">
+        <div class="cta-promo-pill">Limited Time — 80% Off Lifetime Pro</div>
         <h2>Stay private. Take control.</h2>
-        <p>The safest place for your financial life. Download Spent today.</p>
+        <p>The safest place for your financial life. Get Spent Pro Lifetime for just &#8377;99 <span class="promo-original-price">&#8377;499</span></p>
         <div class="hero-buttons">
           <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="store-badge store-badge-light" target="_blank" rel="noopener" aria-label="Get it on Google Play">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.382.217-.72.609-.92zM14.852 13.06l2.944 1.696-8.593 4.956 5.649-6.652zM18.843 8.19l2.814 1.622c.55.317.55 1.06 0 1.376l-2.814 1.622-3.236-2.31 3.236-2.31zM9.203 4.102l8.593 4.956-2.944 1.696-5.649-6.652z"/></svg>

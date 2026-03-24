@@ -1,3 +1,162 @@
+/* === Promo Banner === */
+.promo-banner {
+  background: linear-gradient(90deg, #0D9488, #0B7C72, #0D9488);
+  background-size: 200% 100%;
+  animation: promoShimmer 3s ease infinite;
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+}
+
+@keyframes promoShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.promo-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.promo-banner-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.promo-original-price {
+  text-decoration: line-through;
+  opacity: 0.6;
+  font-size: 0.85em;
+}
+
+.promo-badge {
+  background: #fff;
+  color: #0B7C72;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+
+.promo-banner-cta {
+  background: #fff;
+  color: #0B7C72;
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.promo-banner-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+
+.promo-banner-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.promo-banner-close:hover {
+  color: #fff;
+}
+
+/* Offset nav and hero when promo is visible */
+body.has-promo .nav {
+  top: 40px;
+}
+
+body.has-promo .hero-dark {
+  padding-top: calc(68px + 40px);
+}
+
+body.has-promo .page-header {
+  padding-top: calc(140px + 40px);
+}
+
+/* CTA promo pill */
+.cta-promo-pill {
+  display: inline-block;
+  background: rgba(13, 148, 136, 0.15);
+  color: #2DD4BF;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+.cta-box .promo-original-price {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .promo-banner {
+    font-size: 0.78rem;
+    padding: 8px 12px;
+  }
+  .promo-banner-inner {
+    gap: 10px;
+  }
+  .promo-banner-cta {
+    padding: 4px 12px;
+    font-size: 0.75rem;
+  }
+  body.has-promo .nav {
+    top: 56px;
+  }
+  body.has-promo .hero-dark {
+    padding-top: calc(68px + 56px);
+  }
+  body.has-promo .page-header {
+    padding-top: calc(140px + 56px);
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-banner-inner {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .promo-banner-cta {
+    order: 3;
+  }
+  body.has-promo .nav {
+    top: 72px;
+  }
+  body.has-promo .hero-dark {
+    padding-top: calc(68px + 72px);
+  }
+  body.has-promo .page-header {
+    padding-top: calc(140px + 72px);
+  }
+}
+
 /* === Skip to Content (A11y) === */
 .skip-to-content {
   position: absolute;
