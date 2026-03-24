@@ -685,8 +685,10 @@ section {
 .benefit-card {
   text-align: center;
   padding: 44px 28px 36px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 20px;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -705,8 +707,9 @@ section {
 
 .benefit-card:hover {
   transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.75);
   box-shadow: 0 24px 48px rgba(26, 39, 68, 0.12);
-  border-color: var(--border-hover);
+  border-color: rgba(13, 148, 136, 0.25);
 }
 
 .benefit-icon {
@@ -747,13 +750,19 @@ section {
 /* === Privacy Hook === */
 .privacy-hook {
   padding: 80px 0;
-  background: var(--bg-alt);
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.06), rgba(26, 39, 68, 0.06));
 }
 
 .privacy-hook-inner {
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
+  padding: 48px 36px;
 }
 
 .hook-line {
@@ -778,8 +787,10 @@ section {
 
 /* === Feature Groups === */
 .feature-group {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 20px;
   padding: 32px 36px;
   margin-bottom: 20px;
@@ -801,7 +812,8 @@ section {
 }
 
 .feature-group:hover {
-  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(13, 148, 136, 0.25);
   box-shadow: 0 16px 36px rgba(26, 39, 68, 0.08);
 }
 
