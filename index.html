@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spent: Expense Tracker — Your money. Your rules. Zero tracking.</title>
   <meta name="description" content="A privacy-first expense tracker that works fully offline. Track spending, scan receipts, get AI insights, and learn financial literacy — all without your data ever leaving your device.">
+  <meta name="theme-color" content="#0D2420">
+  <meta property="og:title" content="Spent: Expense Tracker — Your money. Your rules. Zero tracking.">
+  <meta property="og:description" content="A privacy-first expense tracker that works fully offline. Track spending, scan receipts, get AI insights — all without your data ever leaving your device.">
+  <meta property="og:image" content="images/spent_feature_graphic.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spent: Expense Tracker — Your money. Your rules. Zero tracking.">
+  <meta name="twitter:description" content="A privacy-first expense tracker that works fully offline. No servers. No tracking. No data leaves your device.">
+  <meta name="twitter:image" content="images/spent_feature_graphic.png">
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +21,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a href="#main" class="skip-to-content">Skip to content</a>
 
   <!-- Nav -->
   <nav class="nav" id="nav">
@@ -31,7 +41,7 @@
   </nav>
 
   <!-- Hero -->
-  <section class="hero-dark">
+  <section class="hero-dark" id="main">
     <div class="hero-particles">
       <div class="particle" style="left:12%;top:20%;animation-delay:10.0s;animation-duration:15.1s"></div>
       <div class="particle" style="left:85%;top:60%;animation-delay:5.7s;animation-duration:11.8s"></div>
@@ -69,14 +79,22 @@
         </div>
 
         <div class="hero-cta-row">
-          <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="hero-cta hero-cta-primary" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.382.217-.72.609-.92zM14.852 13.06l2.944 1.696-8.593 4.956 5.649-6.652zM18.843 8.19l2.814 1.622c.55.317.55 1.06 0 1.376l-2.814 1.622-3.236-2.31 3.236-2.31zM9.203 4.102l8.593 4.956-2.944 1.696-5.649-6.652z"/></svg>
-            Google Play
+          <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="store-badge" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.382.217-.72.609-.92zM14.852 13.06l2.944 1.696-8.593 4.956 5.649-6.652zM18.843 8.19l2.814 1.622c.55.317.55 1.06 0 1.376l-2.814 1.622-3.236-2.31 3.236-2.31zM9.203 4.102l8.593 4.956-2.944 1.696-5.649-6.652z"/></svg>
+            <span class="store-badge-text"><small>GET IT ON</small>Google Play</span>
           </a>
-          <span class="hero-cta hero-cta-secondary">iOS — Coming Soon</span>
+          <span class="store-badge store-badge-disabled" aria-label="Coming soon on App Store">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span class="store-badge-text"><small>COMING SOON</small>App Store</span>
+          </span>
         </div>
 
         <p class="hero-cta-sub">v3.1.0 · Free · No account required</p>
+
+        <div class="social-proof">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          Loved by users on Google Play
+        </div>
       </div>
 
       <div class="phone-showcase">
@@ -132,6 +150,30 @@
     </div>
   </section>
 
+  <!-- Stats Counters -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <span class="stat-number" data-target="100">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Financial Lessons</span>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="stat-number" data-target="10">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Currencies Supported</span>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="stat-number" data-target="0">0</span>
+          <span class="stat-label">Data Uploaded</span>
+        </div>
+        <div class="stat-item fade-up">
+          <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+          <span class="stat-label">Offline</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Privacy Hook -->
   <section class="privacy-hook">
     <div class="container">
@@ -151,7 +193,7 @@
 
       <!-- Feature Graphic -->
       <div class="preview-banner fade-up">
-        <img src="images/spent_feature_graphic.png" alt="Spent: Track Spending, Keep Your Privacy — 100% Offline, 10+ Currencies, AI Insights, Receipt Scanner" loading="lazy">
+        <img src="images/spent_feature_graphic.png" alt="Spent: Track Spending, Keep Your Privacy — 100% Offline, 10+ Currencies, AI Insights, Receipt Scanner" loading="lazy" width="1024" height="500">
       </div>
 
       <!-- Screenshots -->
@@ -166,6 +208,16 @@
           <div class="screenshot-card fade-up"><img src="images/spent_tablet_07.png" alt="Learn Hub with 100 financial literacy lessons across 5 levels" loading="lazy"></div>
           <div class="screenshot-card fade-up"><img src="images/spent_tablet_08.png" alt="EMI Calculator with amortization schedule and interest breakdown" loading="lazy"></div>
         </div>
+      </div>
+      <div class="scroll-indicator" id="scroll-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
     </div>
   </section>
@@ -332,6 +384,36 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-label">FAQ</div>
+      <h2 class="features-title">Common questions.</h2>
+      <div class="faq-list">
+        <details class="faq-item fade-up">
+          <summary>Is Spent really free?</summary>
+          <div class="faq-answer">Yes. The core app is completely free with no paywalls on essential features. Spent Pro removes ads and unlocks premium features like advanced insights and unlimited passbooks, but the free version is fully functional for everyday expense tracking.</div>
+        </details>
+        <details class="faq-item fade-up">
+          <summary>What happens if I delete the app?</summary>
+          <div class="faq-answer">Since all data is stored locally on your device, uninstalling the app will permanently delete your data. We recommend exporting your transactions as CSV or PDF from Settings before uninstalling.</div>
+        </details>
+        <details class="faq-item fade-up">
+          <summary>Will there be cloud sync?</summary>
+          <div class="faq-answer">We're exploring optional, end-to-end encrypted sync as a future premium feature. If added, it will be strictly opt-in — your data will never be uploaded without your explicit consent.</div>
+        </details>
+        <details class="faq-item fade-up">
+          <summary>How does the AI work without internet?</summary>
+          <div class="faq-answer">All AI insights (spending personality, pattern detection, monthly stories) are powered by on-device algorithms. No data is sent to any server — the analysis happens entirely on your phone using your local transaction history.</div>
+        </details>
+        <details class="faq-item fade-up">
+          <summary>Is my receipt data safe?</summary>
+          <div class="faq-answer">Absolutely. Receipt scanning uses on-device OCR (Google ML Kit). Your photos are processed locally, never uploaded, and are not stored permanently — only the extracted transaction details are saved after you approve them.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta">
     <div class="container">
@@ -339,12 +421,23 @@
         <h2>Stay private. Take control.</h2>
         <p>The safest place for your financial life. Download Spent today.</p>
         <div class="hero-buttons">
-          <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="btn btn-green" target="_blank" rel="noopener">Start Tracking Privately</a>
-          <div class="btn btn-secondary" style="cursor:default;">iOS — Coming Soon</div>
+          <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="store-badge store-badge-light" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.382.217-.72.609-.92zM14.852 13.06l2.944 1.696-8.593 4.956 5.649-6.652zM18.843 8.19l2.814 1.622c.55.317.55 1.06 0 1.376l-2.814 1.622-3.236-2.31 3.236-2.31zM9.203 4.102l8.593 4.956-2.944 1.696-5.649-6.652z"/></svg>
+            <span class="store-badge-text"><small>GET IT ON</small>Google Play</span>
+          </a>
+          <span class="store-badge store-badge-light store-badge-disabled" aria-label="Coming soon on App Store">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span class="store-badge-text"><small>COMING SOON</small>App Store</span>
+          </span>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
 
   <!-- Footer -->
   <footer class="footer">
@@ -360,9 +453,18 @@
   </footer>
 
   <script>
-    // Nav scroll effect
+    // Nav scroll effect + scroll-to-top visibility
+    const scrollTopBtn = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
       document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('open');
+      });
     });
 
     // Scroll reveal for fade-up elements
@@ -408,6 +510,43 @@
       }
 
       setInterval(rotateCarousel, 4000);
+    })();
+
+    // Animated counters
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          if (target === 0) { el.textContent = '0'; counterObserver.unobserve(el); return; }
+          const duration = 1500;
+          const start = performance.now();
+          function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(target * eased);
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+
+    // Screenshot scroll indicator
+    (function() {
+      const track = document.querySelector('.preview-screenshots');
+      const dots = document.querySelectorAll('#scroll-dots .dot');
+      if (!track || !dots.length) return;
+
+      track.addEventListener('scroll', () => {
+        const scrollLeft = track.scrollLeft;
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+        const activeIndex = Math.round(progress * (dots.length - 1));
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+      });
     })();
   </script>
 

@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Use — Spent: Expense Tracker</title>
   <meta name="description" content="Terms of Use for Spent: Expense Tracker. Read the terms governing your use of the app.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="Terms of Use — Spent: Expense Tracker">
+  <meta property="og:description" content="Terms of Use for Spent: Expense Tracker. Read the terms governing your use of the app.">
+  <meta property="og:image" content="images/spent_feature_graphic.png">
+  <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -192,5 +197,10 @@
     </div>
   </footer>
 
+  <script>
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+    });
+  </script>
 </body>
 </html>
