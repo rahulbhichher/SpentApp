@@ -1,670 +1,747 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spent — Your personal expenses tracker</title>
-  <meta name="description" content="Privacy-focused, offline-first personal expense tracking app. Track expenses, scan receipts, split trip costs, get AI insights, learn smart spending habits — all without your data ever leaving your device.">
-  <meta name="theme-color" content="#0D2420">
-  <meta property="og:title" content="Spent: Expense Tracker — Your expenses. Your privacy. Zero tracking.">
-  <meta property="og:description" content="Privacy-focused, offline-first personal expense tracking app. Track expenses, scan receipts, split trip costs, get AI insights — all without your data ever leaving your device.">
-  <meta property="og:image" content="images/spent_feature_graphic.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Spent: Expense Tracker — Your expenses. Your privacy. Zero tracking.">
-  <meta name="twitter:description" content="Privacy-focused, offline-first personal expense tracking app. No servers. No tracking. No data leaves your device.">
-  <meta name="twitter:image" content="images/spent_feature_graphic.png">
-  <link rel="icon" type="image/png" href="logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Spent — Privacy-first expense tracker</title>
+<meta name="description" content="Spent is a privacy-first, offline-first expense tracker for Android and iOS. Track expenses, scan receipts, split trips, get on-device AI insights. No servers, no tracking, no account. 100% free, no ads.">
+<meta name="theme-color" content="#050D0C">
+<meta property="og:title" content="Spent — Track Spending. Keep Your Privacy.">
+<meta property="og:description" content="Privacy-first, offline-first expense tracker. No servers. No tracking. No account. 100% free, no ads.">
+<meta property="og:image" content="https://rahulbhichher.github.io/images/spent_feature_graphic.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="https://rahulbhichher.github.io/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- warm the cache for the in-app pages so they open instantly -->
+<link rel="prefetch" href="currencies.html" as="document">
+<link rel="prefetch" href="privacy.html" as="document">
+<link rel="prefetch" href="terms.html" as="document">
+<link rel="prefetch" href="contact.html" as="document">
+<link rel="prefetch" href="styles.css" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg0:#050D0C; --bg1:#0B1614; --bg2:#0D2420;
+    --teal:#2DD4BF; --teal2:#14B8A6; --teal3:#0D9488;
+    --text:#F4F8F6; --text2:rgba(244,248,246,.64); --text3:rgba(244,248,246,.40);
+    --glass:rgba(255,255,255,.05); --glass-bd:rgba(255,255,255,.10);
+    --shadow:0 24px 60px rgba(0,0,0,.45);
+    --r-tile:24px; --r-card:16px; --r-pill:100px;
+    --gap:clamp(9px,1.1vw,13px);
+    --pad:clamp(16px,2.2vw,26px);
+    --display:'Bricolage Grotesque',system-ui,sans-serif;
+    --body:'Hanken Grotesk',system-ui,sans-serif;
+    --vh:100vh;
+  }
+  @supports (height:100dvh){:root{--vh:100dvh}}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  html,body{height:var(--vh);overflow:hidden}
+  body{
+    font-family:var(--body);
+    background:var(--bg0);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overscroll-behavior:none;
+  }
+  /* App-chrome elements aren't selectable; document content is */
+  .topbar,.nav,.strip,.tabbar,.btn-cta,.badge,.pill,.rating,.eyebrow,.mini-pill{user-select:none}
+
+  /* Atmosphere */
+  .bg-atmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+    background:
+      radial-gradient(1100px 800px at 8% -5%, rgba(45,212,191,.16), transparent 60%),
+      radial-gradient(900px 700px at 100% 105%, rgba(13,148,136,.14), transparent 60%),
+      linear-gradient(160deg,var(--bg0),var(--bg1) 55%,var(--bg2));
+  }
+  .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+  .orb.a{width:460px;height:460px;left:-120px;top:-140px;background:radial-gradient(circle,rgba(45,212,191,.35),transparent 70%);animation:drift1 24s ease-in-out infinite}
+  .orb.b{width:520px;height:520px;right:-160px;bottom:-180px;background:radial-gradient(circle,rgba(20,184,166,.3),transparent 70%);animation:drift2 30s ease-in-out infinite}
+  @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,-40px)}}
+  .particle{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--teal);opacity:0;bottom:-10px;animation:rise linear infinite}
+  @keyframes rise{0%{transform:translateY(0);opacity:0}10%{opacity:.5}90%{opacity:.4}100%{transform:translateY(-105vh);opacity:0}}
+
+  /* Shell */
+  .shell{position:relative;z-index:1;height:var(--vh);max-width:1500px;margin:0 auto;
+    padding:max(var(--gap),env(safe-area-inset-top)) max(var(--gap),env(safe-area-inset-right)) max(var(--gap),env(safe-area-inset-bottom)) max(var(--gap),env(safe-area-inset-left));
+    display:flex;flex-direction:column;gap:var(--gap)}
+
+  /* Glass base + gloss streak */
+  .glass{position:relative;background:var(--glass);border:1px solid var(--glass-bd);
+    backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:var(--r-tile);
+    box-shadow:var(--shadow);overflow:hidden}
+  .glass::before{content:"";position:absolute;top:0;left:8%;right:8%;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);pointer-events:none}
+
+  /* ===== Glassy buttons ===== */
+  .btn-glass{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+    color:var(--text);border-radius:var(--r-pill);cursor:pointer;font-family:inherit;transition:.2s;
+    -webkit-appearance:none;appearance:none}
+  .btn-glass:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+  .btn-glass:active{transform:translateY(0) scale(.97)}
+  .btn-cta{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;font-family:var(--display);
+    font-weight:700;font-size:14px;color:#EAFBF7;text-decoration:none;border-radius:var(--r-pill);white-space:nowrap;cursor:pointer;
+    background:linear-gradient(160deg,rgba(45,212,191,.30),rgba(20,184,166,.13));
+    border:1px solid rgba(45,212,191,.5);
+    backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);
+    box-shadow:0 10px 30px rgba(45,212,191,.22),inset 0 1px 0 rgba(255,255,255,.18);transition:.2s}
+  .btn-cta:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(45,212,191,.34),inset 0 1px 0 rgba(255,255,255,.26)}
+  .btn-cta:active{transform:translateY(0) scale(.98)}
+  .icon-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;font-size:18px;line-height:1}
+
+  /* Top bar */
+  .topbar{flex:0 0 auto;display:flex;align-items:center;gap:14px;padding:10px clamp(12px,1.6vw,18px)}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:clamp(17px,2vw,20px);color:var(--text);text-decoration:none;background:none;border:none;cursor:pointer}
+  .logo img{width:30px;height:30px;border-radius:8px}
+  .nav{display:flex;gap:4px;margin:0 auto;background:rgba(255,255,255,.04);border:1px solid var(--glass-bd);border-radius:var(--r-pill);padding:4px;backdrop-filter:blur(14px)}
+  .nav button{color:var(--text2);background:none;border:none;font-family:inherit;font-size:14px;font-weight:500;padding:9px 16px;border-radius:var(--r-pill);transition:.2s;cursor:pointer}
+  .nav button:hover,.nav button.active{color:var(--text);background:rgba(255,255,255,.08)}
+  .rating{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);background:rgba(255,255,255,.04);border:1px solid var(--glass-bd);border-radius:var(--r-pill);padding:8px 14px;white-space:nowrap;backdrop-filter:blur(14px)}
+  .rating .stars{color:#FBBF24;letter-spacing:1px}
+
+  /* Bento */
+  .bento{flex:1 1 auto;display:grid;gap:var(--gap);min-height:0;
+    grid-template-columns:1.5fr 1.18fr .95fr;
+    grid-template-rows:1fr 1fr;
+    grid-template-areas:"hero phone privacy" "hero phone stats";}
+  .tile{padding:var(--pad);display:flex;flex-direction:column;min-height:0}
+  .a-hero{grid-area:hero}.a-phone{grid-area:phone}.a-privacy{grid-area:privacy}.a-stats{grid-area:stats}
+
+  /* Load animation */
+  .rise-in{opacity:0;transform:translateY(22px);animation:riseIn .7s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes riseIn{to{opacity:1;transform:translateY(0)}}
+
+  /* Hero */
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:auto}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(45,212,191,.6);animation:pulse 2.2s infinite;flex:0 0 auto}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(45,212,191,.55)}70%{box-shadow:0 0 0 10px rgba(45,212,191,0)}100%{box-shadow:0 0 0 0 rgba(45,212,191,0)}}
+  h1{font-family:var(--display);font-weight:800;line-height:1.0;letter-spacing:-.02em;
+    font-size:clamp(32px,4.6vw,68px);margin-top:clamp(10px,1.6vw,18px)}
+  h1 .teal{color:var(--teal)}
+  .underline{width:60px;height:4px;border-radius:4px;background:var(--teal);margin:clamp(12px,1.6vw,20px) 0 14px}
+  .subtitle{font-size:clamp(13.5px,1.1vw,17px);color:var(--text2);max-width:46ch;line-height:1.5}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin:clamp(14px,1.8vw,22px) 0}
+  .pill{font-size:clamp(11.5px,.95vw,12.5px);font-weight:500;color:var(--text2);background:rgba(255,255,255,.05);border:1px solid var(--glass-bd);border-radius:var(--r-pill);padding:7px 13px;transition:.2s}
+  .pill:hover{transform:translateY(-2px);color:var(--text);border-color:rgba(45,212,191,.5)}
+  .badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto}
+  .badge{display:flex;align-items:center;gap:11px;color:var(--text);border-radius:14px;padding:10px 18px;text-decoration:none;transition:.2s;min-width:168px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+  .badge:hover{transform:translateY(-3px);background:rgba(255,255,255,.12);box-shadow:0 12px 28px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.16)}
+  .badge svg{width:26px;height:26px;flex:0 0 auto}
+  .badge .small{font-size:10px;letter-spacing:.06em;text-transform:uppercase;opacity:.55;line-height:1.1}
+  .badge .big{font-family:var(--display);font-weight:700;font-size:17px;line-height:1.15}
+
+  /* Phone tile */
+  .a-phone{align-items:center;justify-content:center;perspective:1400px;overflow:visible}
+  .phone-stage{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;transform-style:preserve-3d}
+  .phone{position:relative;height:90%;max-height:560px;aspect-ratio:9/19;border-radius:38px;
+    background:#04100E;border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 40px 90px rgba(0,0,0,.6),inset 0 0 0 6px #02100D;
+    transform:rotateY(-13deg) rotateX(4deg);transform-style:preserve-3d;
+    transition:transform .25s ease-out;overflow:hidden}
+  .phone img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;border-radius:32px}
+  .notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:18px;background:#02100D;border-radius:0 0 12px 12px;z-index:3}
+  .float{position:absolute;background:rgba(8,20,18,.72);border:1px solid var(--glass-bd);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:var(--r-card);
+    padding:13px 15px;box-shadow:0 16px 40px rgba(0,0,0,.5);z-index:5}
+  .float::before{content:"";position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent)}
+  .f-balance{left:-6%;top:14%;animation:bob 6s ease-in-out infinite}
+  .f-offline{right:-8%;top:42%;animation:bob 7s ease-in-out infinite .8s}
+  .f-saved{left:0%;bottom:10%;animation:bob 6.5s ease-in-out infinite .4s}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .f-label{font-size:10.5px;color:var(--text3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .f-num{font-family:var(--display);font-weight:800;font-size:22px}
+  .chip-up{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--teal);background:rgba(45,212,191,.13);border-radius:var(--r-pill);padding:3px 8px;margin-top:5px}
+  .sparkline{display:block;margin-top:8px}
+  .spark-path{fill:none;stroke:var(--teal);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:240;stroke-dashoffset:240;animation:draw 1.8s ease-out .6s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .f-offline{display:flex;align-items:center;gap:9px}
+  .f-offline .txt{font-size:11.5px;font-weight:600;color:var(--text);line-height:1.3}
+  .progress{width:148px;height:7px;border-radius:var(--r-pill);background:rgba(255,255,255,.1);overflow:hidden;margin-top:8px}
+  .progress span{display:block;height:100%;width:0;border-radius:var(--r-pill);background:var(--teal);transition:width 1.6s cubic-bezier(.2,.7,.2,1) .5s}
+  .f-saved .row{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .f-saved .pct{font-family:var(--display);font-weight:800;font-size:18px;color:var(--teal)}
+
+  /* Privacy tile */
+  .a-privacy{background:linear-gradient(150deg,rgba(45,212,191,.12),rgba(13,148,136,.05));border-color:rgba(45,212,191,.28)}
+  .a-privacy::after{content:"";position:absolute;width:240px;height:240px;right:-60px;top:-60px;background:radial-gradient(circle,rgba(45,212,191,.3),transparent 70%);filter:blur(30px);pointer-events:none}
+  .icon-sq{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+    background:rgba(45,212,191,.16);border:1px solid rgba(45,212,191,.3);color:var(--teal);margin-bottom:auto}
+  .icon-sq svg{width:24px;height:24px}
+  .a-privacy h2{font-family:var(--display);font-weight:800;font-size:clamp(22px,2.3vw,34px);line-height:1.05;margin:14px 0 10px}
+  .a-privacy p{font-size:clamp(12.5px,1vw,13.5px);color:var(--text2);line-height:1.5}
+  .mini-pill{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:var(--teal);
+    background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.28);border-radius:var(--r-pill);padding:7px 13px;margin-top:14px;align-self:flex-start}
+
+  /* Stats tile */
+  .a-stats{padding:clamp(12px,1.6vw,20px)}
+  .stats-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:clamp(8px,1vw,12px);height:100%}
+  .stat{position:relative;background:rgba(255,255,255,.04);border:1px solid var(--glass-bd);border-radius:var(--r-card);padding:13px 14px;display:flex;flex-direction:column;justify-content:center}
+  .stat .si{color:var(--teal);width:18px;height:18px;margin-bottom:7px}
+  .stat .sv{font-family:var(--display);font-weight:800;font-size:clamp(18px,1.7vw,26px);line-height:1}
+  .stat .sl{font-size:11px;color:var(--text2);margin-top:3px;line-height:1.25}
+  .live-dot{position:absolute;top:11px;right:11px;display:inline-flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--teal)}
+
+  /* Bottom strip */
+  .strip{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+  .chip{display:flex;align-items:center;gap:14px;padding:clamp(12px,1.5vw,16px) clamp(14px,1.6vw,18px);cursor:pointer;text-align:left;border:1px solid var(--glass-bd);width:100%;font-family:inherit}
+  .chip .csq{width:40px;height:40px;border-radius:11px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:rgba(45,212,191,.14);border:1px solid rgba(45,212,191,.28);color:var(--teal)}
+  .chip .csq svg{width:20px;height:20px}
+  .chip .ctxt{flex:1 1 auto;min-width:0}
+  .chip .clabel{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+  .chip .ctitle{font-family:var(--display);font-weight:700;font-size:15px;color:var(--text);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .chip .carrow{width:34px;height:34px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;border:1px solid var(--glass-bd);color:var(--text2);transition:.2s}
+  .chip:hover{transform:translateY(-3px);border-color:rgba(45,212,191,.4)}
+  .chip:hover .carrow{background:var(--teal);color:#04211C;border-color:var(--teal)}
+  .chip:active{transform:translateY(0) scale(.99)}
+  .chip .carrow svg{width:16px;height:16px}
+
+  /* Mobile bottom tab bar (app feel) */
+  .tabbar{display:none}
+
+  /* Modals */
+  .overlay{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:24px;
+    background:rgba(3,8,7,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .overlay.open{display:flex;animation:fadeIn .25s ease}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .modal{position:relative;width:min(820px,100%);max-height:86vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    background:linear-gradient(160deg,rgba(13,30,27,.96),rgba(8,18,16,.96));
+    border:1px solid var(--glass-bd);border-radius:26px;box-shadow:0 40px 100px rgba(0,0,0,.6);
+    padding:clamp(20px,3vw,32px);animation:popIn .3s cubic-bezier(.2,.7,.2,1)}
+  @keyframes popIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+  .modal::-webkit-scrollbar{width:8px}.modal::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:8px}
+  .modal h3{font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,26px);padding-right:44px}
+  .modal .lead{color:var(--text2);font-size:14px;margin-top:6px}
+  .x{position:absolute;top:20px;right:20px}
+  .x:hover{transform:rotate(90deg) translateY(0)}
+  .mgroups{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  .mgroup{background:rgba(255,255,255,.04);border:1px solid var(--glass-bd);border-radius:var(--r-card);padding:16px}
+  .mgroup .gh{display:flex;align-items:center;gap:10px;margin-bottom:11px;flex-wrap:wrap}
+  .mgroup .gi{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:rgba(45,212,191,.14);color:var(--teal);flex:0 0 auto}
+  .mgroup .gi svg{width:18px;height:18px}
+  .mgroup .gt{font-family:var(--display);font-weight:700;font-size:15px}
+  .nbadge{font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#04211C;background:var(--teal);border-radius:var(--r-pill);padding:3px 8px}
+  .dnabadge{font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);background:rgba(45,212,191,.14);border:1px solid rgba(45,212,191,.3);border-radius:var(--r-pill);padding:3px 8px}
+  .fchips{display:flex;flex-wrap:wrap;gap:6px}
+  .fchips span{font-size:11.5px;color:var(--text2);background:rgba(255,255,255,.05);border:1px solid var(--glass-bd);border-radius:var(--r-pill);padding:5px 11px}
+  /* compare table */
+  .ctable{width:100%;border-collapse:collapse;margin-top:22px;font-size:clamp(12.5px,1.4vw,13.5px)}
+  .ctable th,.ctable td{padding:11px 14px;text-align:left;border-bottom:1px solid rgba(255,255,255,.07)}
+  .ctable th{font-family:var(--display);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--text3)}
+  .ctable th.cspent,.ctable td.cspent{color:var(--teal);font-weight:600}
+  .ctable td.cother{color:var(--text3)}
+  .ctable td:first-child{color:var(--text);font-weight:500}
+  /* updates */
+  .ulist{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+  .urow{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--glass-bd);border-radius:var(--r-card);padding:14px 16px}
+  .utag{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal);background:rgba(45,212,191,.13);border:1px solid rgba(45,212,191,.28);border-radius:var(--r-pill);padding:4px 10px;white-space:nowrap;flex:0 0 auto;margin-top:1px}
+  .urow .ut{font-family:var(--display);font-weight:700;font-size:14.5px}
+  .urow .ud{font-size:13px;color:var(--text2);margin-top:2px}
+  /* faq */
+  .faq{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+  .faq .q{font-family:var(--display);font-weight:700;font-size:16px;color:var(--text)}
+  .faq .a{font-size:13.5px;color:var(--text2);line-height:1.55;margin-top:5px}
+  .faq .item{border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:12px}
+
+  /* ===== In-app page sheet (prerendered iframes) ===== */
+  .sheet{padding:clamp(0px,3vw,40px)}
+  .sheet-card{display:flex;flex-direction:column;width:min(1000px,100%);height:min(90vh,920px);max-height:90dvh;
+    background:linear-gradient(160deg,rgba(13,30,27,.97),rgba(8,18,16,.97));
+    border:1px solid var(--glass-bd);border-radius:26px;overflow:hidden;
+    box-shadow:0 40px 100px rgba(0,0,0,.6);animation:popIn .3s cubic-bezier(.2,.7,.2,1)}
+  .sheet-head{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:13px 14px 13px 20px;border-bottom:1px solid var(--glass-bd);background:rgba(255,255,255,.03)}
+  .sheet-title{font-family:var(--display);font-weight:800;font-size:18px}
+  .sheet-body{flex:1 1 auto;min-height:0;position:relative;background:#fff}
+  .page-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:none}
+  .page-frame.show{display:block}
+  .sheet-spinner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;color:#0D9488;font-family:var(--display);font-weight:700;font-size:14px;z-index:2}
+  .sheet-spinner .ring{width:22px;height:22px;border:3px solid rgba(13,148,136,.25);border-top-color:#0D9488;border-radius:50%;margin-right:10px;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ===== Responsive ===== */
+  @media (max-width:1100px){
+    :root{--pad:clamp(14px,2vw,22px)}
+    .badge{min-width:150px;padding:9px 14px}
+    .badge .big{font-size:15px}
+  }
+  @media (max-width:980px){
+    html,body{height:auto;overflow:auto}
+    .shell{height:auto;min-height:var(--vh);padding-bottom:calc(var(--gap) + 70px + env(safe-area-inset-bottom))}
+    .nav,.rating{display:none}
+    .topbar{justify-content:space-between}
+    .bento{grid-template-columns:1fr;grid-template-rows:none;
+      grid-template-areas:"hero" "phone" "privacy" "stats"}
+    .a-phone{min-height:480px;perspective:none;padding-top:34px}
+    .phone{transform:none;height:auto;width:min(260px,70vw);max-height:none}
+    .float{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;animation:none;margin:10px auto 0;width:fit-content}
+    .phone-stage{flex-direction:column;gap:12px;flex-wrap:wrap;height:auto;padding:6px 0}
+    .a-stats .stats-grid{min-height:200px}
+    .mgroups{grid-template-columns:1fr}
+    /* bottom tab bar */
+    .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;justify-content:space-around;gap:2px;
+      padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+      background:rgba(7,16,14,.82);border-top:1px solid var(--glass-bd);
+      backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%)}
+    .tabbar button{flex:1;min-width:0;background:none;border:none;color:var(--text3);font-family:inherit;font-size:10px;font-weight:600;
+      display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;border-radius:12px;cursor:pointer;transition:.18s}
+    .tabbar button svg{width:21px;height:21px}
+    .tabbar button.active{color:var(--teal)}
+    .tabbar button:active{transform:scale(.92)}
+  }
+  @media (max-width:560px){
+    .strip{grid-template-columns:1fr}
+    h1{font-size:clamp(34px,9vw,44px)}
+    .badges{gap:10px}
+    .badge{flex:1 1 auto;min-width:0;justify-content:center}
+    .sheet{padding:0}
+    .sheet-card{height:100dvh;max-height:100dvh;width:100%;border-radius:0}
+    .modal{border-radius:22px 22px 0 0;max-height:90vh;align-self:flex-end;width:100%}
+    .overlay:not(.sheet){align-items:flex-end;padding:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001s!important;animation-iteration-count:1!important;transition:none!important}
+    .rise-in{opacity:1;transform:none}
+  }
+</style>
 </head>
 <body>
-  <a href="#main" class="skip-to-content">Skip to content</a>
+<div class="bg-atmos" aria-hidden="true">
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+  <div id="particles"></div>
+</div>
 
+<div class="shell">
 
-  <!-- Nav -->
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="logo.png" alt="Spent Logo">
-        Spent
-      </a>
-      <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="currencies.html">Currencies</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-        <li><a href="terms.html">Terms</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+  <!-- TOP BAR -->
+  <header class="topbar glass rise-in" style="animation-delay:.05s">
+    <button class="logo" data-page="home" aria-label="Spent home"><img src="https://rahulbhichher.github.io/logo.png" alt="">Spent</button>
+    <nav class="nav" aria-label="Primary">
+      <button data-page="home" class="active">Home</button>
+      <button data-page="currencies">Currencies</button>
+      <button data-page="privacy">Privacy</button>
+      <button data-page="terms">Terms</button>
+      <button data-page="contact">Contact</button>
+    </nav>
+    <span class="rating"><span class="stars" aria-hidden="true">★★★★★</span> 4.9 App Store &amp; Play</span>
+    <a class="btn-cta" href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" target="_blank" rel="noopener">Get the app</a>
+  </header>
+
+  <!-- BENTO -->
+  <main class="bento">
+
+    <!-- HERO -->
+    <section class="tile glass a-hero rise-in" style="animation-delay:.12s">
+      <span class="eyebrow"><span class="dot"></span>100% Offline · Data never leaves</span>
+      <h1>Track Spending.<br><span class="teal">Keep Your Privacy.</span></h1>
+      <div class="underline"></div>
+      <p class="subtitle">The expense tracker that works entirely on your device. No servers, no tracking, no account — just clarity on where your money goes.</p>
+      <div class="pills">
+        <span class="pill">100% Offline</span>
+        <span class="pill">No Ads Ever</span>
+        <span class="pill">Free Forever</span>
+        <span class="pill">80+ Currencies</span>
+        <span class="pill">AI Insights</span>
+        <span class="pill">Receipt Scanner</span>
+      </div>
+      <div class="badges">
+        <a class="badge" href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+          <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="#4285F4" d="M58 10c-7 4-12 12-12 22v448c0 10 5 18 12 22l245-246z"/><path fill="#34A853" d="M325 256 66 502c-3 1-6 1-8 0l267-246z"/><path fill="#FBBC04" d="M414 211 325 256l45 45 86-49c16-9 16-32 0-41z"/><path fill="#EA4335" d="M325 256 58 10c2-1 5-1 8 0l259 145z"/></svg>
+          <span><span class="small">Get it on</span><span class="big">Google Play</span></span>
+        </a>
+        <a class="badge" href="https://apps.apple.com/app/id6761287925" target="_blank" rel="noopener" aria-label="Download on the App Store">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#F4F8F6" d="M17.05 12.54c-.02-2.07 1.69-3.06 1.77-3.11-.96-1.41-2.46-1.6-2.99-1.62-1.27-.13-2.48.75-3.12.75-.65 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.04 8.23.69.99 1.51 2.11 2.58 2.07 1.04-.04 1.43-.67 2.69-.67 1.25 0 1.6.67 2.7.65 1.11-.02 1.82-1.01 2.5-2.01.79-1.15 1.11-2.27 1.13-2.32-.02-.01-2.17-.83-2.19-3.3zM15.1 6.13c.57-.69.95-1.65.85-2.6-.82.03-1.81.55-2.4 1.23-.53.61-.99 1.58-.87 2.51.91.07 1.85-.46 2.42-1.14z"/></svg>
+          <span><span class="small">Download on the</span><span class="big">App Store</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- PHONE -->
+    <section class="tile glass a-phone rise-in" style="animation-delay:.19s" id="phoneTile">
+      <div class="phone-stage">
+        <div class="phone" id="phone">
+          <div class="notch" aria-hidden="true"></div>
+          <img src="https://rahulbhichher.github.io/images/spent_tablet_01.png" alt="Spent app home screen showing expense overview">
+        </div>
+        <div class="float f-balance">
+          <div class="f-label">Total balance</div>
+          <div class="f-num">$<span id="balance">0</span></div>
+          <span class="chip-up">▲ 4.2% this month</span>
+          <svg class="sparkline" width="120" height="34" viewBox="0 0 120 34" aria-hidden="true">
+            <path class="spark-path" d="M2,28 L18,22 L34,25 L50,15 L66,18 L82,9 L98,12 L118,3"/>
+          </svg>
+        </div>
+        <div class="float f-offline">
+          <span class="dot"></span>
+          <span class="txt">100% Offline<br>Encrypted on device</span>
+        </div>
+        <div class="float f-saved">
+          <div class="f-label">Saved this month</div>
+          <div class="row"><span class="pct">18%</span><span style="font-size:11px;color:var(--text2)">on track</span></div>
+          <div class="progress"><span id="savedBar"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVACY -->
+    <section class="tile glass a-privacy rise-in" style="animation-delay:.26s">
+      <div class="icon-sq" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      </div>
+      <h2>100% Offline</h2>
+      <p>Your data lives only on your phone. No servers, no cloud sync, no tracking — nothing leaves your device, ever.</p>
+      <span class="mini-pill"><span class="dot"></span>Encrypted · On-device only</span>
+    </section>
+
+    <!-- STATS -->
+    <section class="tile glass a-stats rise-in" style="animation-delay:.33s">
+      <div class="stats-grid">
+        <div class="stat">
+          <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          <div class="sv" data-count="80" data-suffix="+">0</div>
+          <div class="sl">Currencies</div>
+        </div>
+        <div class="stat">
+          <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M18 17H6"/></svg>
+          <div class="sv" data-count="100">0</div>
+          <div class="sl">Spending lessons</div>
+        </div>
+        <div class="stat">
+          <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg>
+          <div class="sv" style="font-size:clamp(15px,1.4vw,21px)">AI</div>
+          <div class="sl">On-device insights</div>
+        </div>
+        <div class="stat">
+          <span class="live-dot"><span class="dot" style="width:6px;height:6px"></span>private</span>
+          <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 20h16" opacity=".6"/></svg>
+          <div class="sv" data-count="0">0</div>
+          <div class="sl">Data uploaded</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM STRIP -->
+  <nav class="strip" aria-label="Learn more">
+    <button class="chip glass rise-in" style="animation-delay:.40s" data-modal="m-features">
+      <span class="csq" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+      <span class="ctxt"><span class="clabel">Features</span><span class="ctitle">Everything you need</span></span>
+      <span class="carrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </button>
+    <button class="chip glass rise-in" style="animation-delay:.46s" data-modal="m-why">
+      <span class="csq" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 8l9-5 9 5M5 10v8M19 10v8M3 18h18"/></svg></span>
+      <span class="ctxt"><span class="clabel">Why Spent</span><span class="ctitle">Spent vs others</span></span>
+      <span class="carrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </button>
+    <button class="chip glass rise-in" style="animation-delay:.52s" data-modal="m-updates">
+      <span class="csq" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+      <span class="ctxt"><span class="clabel">Updates</span><span class="ctitle">What's new</span></span>
+      <span class="carrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </button>
+    <button class="chip glass rise-in" style="animation-delay:.58s" data-modal="m-faq">
+      <span class="csq" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3.5M12 17h.01"/></svg></span>
+      <span class="ctxt"><span class="clabel">FAQ</span><span class="ctitle">Common questions</span></span>
+      <span class="carrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </button>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero-dark" id="main">
-    <div class="hero-particles">
-      <div class="particle" style="left:12%;top:20%;animation-delay:10.0s;animation-duration:15.1s"></div>
-      <div class="particle" style="left:85%;top:60%;animation-delay:5.7s;animation-duration:11.8s"></div>
-      <div class="particle" style="left:45%;top:80%;animation-delay:11.6s;animation-duration:10.0s"></div>
-      <div class="particle" style="left:70%;top:15%;animation-delay:8.3s;animation-duration:11.4s"></div>
-      <div class="particle" style="left:30%;top:50%;animation-delay:6.5s;animation-duration:17.0s"></div>
-      <div class="particle" style="left:90%;top:35%;animation-delay:10.8s;animation-duration:10.2s"></div>
-      <div class="particle" style="left:15%;top:70%;animation-delay:0.1s;animation-duration:17.9s"></div>
-      <div class="particle" style="left:60%;top:40%;animation-delay:7.0s;animation-duration:13.6s"></div>
-    </div>
+</div>
 
-    <div class="hero-dark-inner">
-      <div class="hero-text">
-        <div class="privacy-anchor"><span class="anchor-dot"></span> 100% Offline — Your data never leaves</div>
+<!-- MOBILE TAB BAR -->
+<nav class="tabbar" aria-label="Sections">
+  <button data-page="home" class="active" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11l8-7 8 7M6 10v9h12v-9"/></svg>Home</button>
+  <button data-page="currencies" aria-label="Currencies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Currencies</button>
+  <button data-page="privacy" aria-label="Privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Privacy</button>
+  <button data-page="terms" aria-label="Terms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l3 3v17H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Terms</button>
+  <button data-page="contact" aria-label="Contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>Contact</button>
+</nav>
 
-        <div class="hero-dark-badge"><span style="font-weight:800;font-size:17px">$</span> Spent</div>
+<!-- ===== MODALS ===== -->
 
-        <h1 class="hero-headline">
-          Track Spending.<br>
-          Keep Your Privacy.
-        </h1>
-
-        <div class="accent-line"></div>
-
-        <p class="hero-subtitle">
-          Track expenses, scan receipts, split trips, get AI insights,<br>
-          and learn smart spending habits — all without your data ever leaving your device.
-        </p>
-
-        <div class="hero-tags">
-          <span class="hero-tag">100% Offline</span>
-          <span class="hero-tag">No Ads Ever</span>
-          <span class="hero-tag">Free Forever</span>
-          <a href="currencies.html" class="hero-tag">80+ Currencies</a>
-          <span class="hero-tag">AI Insights</span>
-          <span class="hero-tag">Receipt Scanner</span>
-          <span class="hero-tag">Trip Splitting</span>
-          <span class="hero-tag">100 Lessons</span>
-        </div>
-
-        <div class="hero-cta-row">
-          <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="store-badge" target="_blank" rel="noopener" aria-label="Get it on Google Play">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.382.217-.72.609-.92zM14.852 13.06l2.944 1.696-8.593 4.956 5.649-6.652zM18.843 8.19l2.814 1.622c.55.317.55 1.06 0 1.376l-2.814 1.622-3.236-2.31 3.236-2.31zM9.203 4.102l8.593 4.956-2.944 1.696-5.649-6.652z"/></svg>
-            <span class="store-badge-text"><small>GET IT ON</small>Google Play</span>
-          </a>
-          <a href="https://apps.apple.com/app/id6761287925" class="store-badge" target="_blank" rel="noopener" aria-label="Download on the App Store">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            <span class="store-badge-text"><small>DOWNLOAD ON THE</small>App Store</span>
-          </a>
-        </div>
-
-        <p class="hero-cta-sub">100% Free · No Ads · No Account Required</p>
-
-        <div class="social-proof">
-          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          Available on App Store &amp; Google Play
-        </div>
+<!-- FEATURES -->
+<div class="overlay" id="m-features" role="dialog" aria-modal="true" aria-labelledby="m-features-t">
+  <div class="modal">
+    <button class="x btn-glass icon-btn" aria-label="Close">✕</button>
+    <h3 id="m-features-t">Everything you need</h3>
+    <p class="lead">Powerful expense tracking — all running privately on your device.</p>
+    <div class="mgroups">
+      <div class="mgroup">
+        <div class="gh"><span class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v12H3zM3 11h18"/></svg></span><span class="gt">Expense Tracking</span></div>
+        <div class="fchips"><span>Quick add</span><span>Categories</span><span>Recurring</span><span>Budgets</span><span>Search &amp; filter</span><span>Calendar view</span></div>
       </div>
-
-      <div class="phone-showcase">
-        <div class="phone-glow bright" id="glow"></div>
-
-        <div id="phone-stack">
-          <div class="phone pos-far-left"><img src="images/spent_tablet_04.png" alt="Budget goals"></div>
-          <div class="phone pos-left"><img src="images/spent_tablet_05.png" alt="Spending insights"></div>
-          <div class="phone pos-center"><img src="images/spent_tablet_01.png" alt="Dashboard"></div>
-          <div class="phone pos-right"><img src="images/spent_tablet_02.png" alt="Add expense"></div>
-          <div class="phone pos-far-right"><img src="images/spent_tablet_03.png" alt="Receipt scanner"></div>
-        </div>
-
-        <!-- Floating cards -->
-        <div class="float-card fc-privacy visible">
-          <div class="float-card-label"><span class="shield-icon">&#128274;</span> Privacy</div>
-          <div class="float-card-value">100% Offline</div>
-        </div>
-        <div class="float-card fc-savings visible">
-          <div class="float-card-label">&#128176; Savings</div>
-          <div class="float-card-value">On Track</div>
-        </div>
+      <div class="mgroup">
+        <div class="gh"><span class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg></span><span class="gt">Smart Intelligence</span><span class="nbadge">New</span></div>
+        <div class="fchips"><span>On-device AI</span><span>Spending insights</span><span>Receipt OCR</span><span>Merchant learning</span><span>Paste &amp; Log</span></div>
+      </div>
+      <div class="mgroup">
+        <div class="gh"><span class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="gt">Trip Mode &amp; Splitting</span><span class="nbadge">New</span></div>
+        <div class="fchips"><span>Group trips</span><span>Split bills</span><span>Who owes who</span><span>Settle up</span><span>Multi-currency</span></div>
+      </div>
+      <div class="mgroup">
+        <div class="gh"><span class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><span class="gt">Privacy &amp; Security</span><span class="dnabadge">Our DNA</span></div>
+        <div class="fchips"><span>100% offline</span><span>No account</span><span>On-device encryption</span><span>No tracking</span><span>No ads</span></div>
+      </div>
+      <div class="mgroup">
+        <div class="gh"><span class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M18 17H6"/></svg></span><span class="gt">Learn &amp; Calculate</span></div>
+        <div class="fchips"><span>100 lessons</span><span>Saving goals</span><span>Built-in calculator</span><span>80+ currencies</span><span>Tips</span></div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- Top 3 Benefits -->
-  <section class="benefits-section">
-    <div class="container">
-      <div class="benefits-grid">
-        <div class="benefit-card fade-up">
-          <div class="benefit-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <h3>100% Private</h3>
-          <p>No servers. No tracking. No data leaves your device. Ever.</p>
-        </div>
-        <div class="benefit-card fade-up">
-          <div class="benefit-icon navy">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <h3>Fast &amp; Offline</h3>
-          <p>Works without internet. Instant load. Zero lag. Always available.</p>
-        </div>
-        <div class="benefit-card fade-up">
-          <div class="benefit-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </div>
-          <h3>No Ads. No Catch.</h3>
-          <p>Every feature is free. No ads, no paywalls, no subscriptions. Seriously.</p>
-        </div>
-      </div>
+<!-- WHY -->
+<div class="overlay" id="m-why" role="dialog" aria-modal="true" aria-labelledby="m-why-t">
+  <div class="modal">
+    <button class="x btn-glass icon-btn" aria-label="Close">✕</button>
+    <h3 id="m-why-t">Spent vs others</h3>
+    <p class="lead">Built privacy-first from the ground up — not bolted on later.</p>
+    <table class="ctable">
+      <thead><tr><th>Feature</th><th class="cspent">Spent</th><th>Others</th></tr></thead>
+      <tbody>
+        <tr><td>Data Tracking</td><td class="cspent">None</td><td class="cother">Yes</td></tr>
+        <tr><td>Works Offline</td><td class="cspent">Always</td><td class="cother">Rarely</td></tr>
+        <tr><td>Cloud Required</td><td class="cspent">Never</td><td class="cother">Always</td></tr>
+        <tr><td>Account</td><td class="cspent">Not needed</td><td class="cother">Required</td></tr>
+        <tr><td>AI Insights</td><td class="cspent">On-device</td><td class="cother">Cloud-based</td></tr>
+        <tr><td>Receipt Scanning</td><td class="cspent">On-device OCR</td><td class="cother">Cloud upload</td></tr>
+        <tr><td>Trip Splitting</td><td class="cspent">Built-in</td><td class="cother">Separate app</td></tr>
+        <tr><td>Quick Capture</td><td class="cspent">Back Tap &amp; Shortcuts</td><td class="cother">No</td></tr>
+        <tr><td>Currencies</td><td class="cspent">80+</td><td class="cother">5-10 typical</td></tr>
+        <tr><td>Spending Lessons</td><td class="cspent">100</td><td class="cother">No</td></tr>
+        <tr><td>Paste &amp; Log</td><td class="cspent">Clipboard extraction</td><td class="cother">No</td></tr>
+        <tr><td>Advertisements</td><td class="cspent">None. Ever.</td><td class="cother">Banners &amp; popups</td></tr>
+        <tr><td>Price</td><td class="cspent">100% Free</td><td class="cother">Free tier + paywall</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- UPDATES -->
+<div class="overlay" id="m-updates" role="dialog" aria-modal="true" aria-labelledby="m-updates-t">
+  <div class="modal">
+    <button class="x btn-glass icon-btn" aria-label="Close">✕</button>
+    <h3 id="m-updates-t">What's new</h3>
+    <p class="lead">The latest in Spent — version 4.0.</p>
+    <div class="ulist">
+      <div class="urow"><span class="utag">v4.0</span><div><div class="ut">100% Free &amp; Ad-Free</div><div class="ud">Every feature unlocked for everyone. No ads, no paywalls, ever.</div></div></div>
+      <div class="urow"><span class="utag">New</span><div><div class="ut">Trip Mode &amp; Splitting</div><div class="ud">Track group trips and split expenses — settle up in any currency.</div></div></div>
+      <div class="urow"><span class="utag">New</span><div><div class="ut">Learn Hub</div><div class="ud">100 bite-sized lessons to build smarter spending habits.</div></div></div>
+      <div class="urow"><span class="utag">New</span><div><div class="ut">Paste &amp; Log</div><div class="ud">Paste any text and Spent extracts the amount and merchant for you.</div></div></div>
+      <div class="urow"><span class="utag">New</span><div><div class="ut">Saving Goals</div><div class="ud">Set targets and watch your progress fill up over the month.</div></div></div>
+      <div class="urow"><span class="utag">Improved</span><div><div class="ut">Merchant Learning</div><div class="ud">Spent remembers your merchants and auto-categorizes on device.</div></div></div>
+      <div class="urow"><span class="utag">Improved</span><div><div class="ut">Quick Capture</div><div class="ud">Log an expense instantly with Back Tap and home-screen shortcuts.</div></div></div>
+      <div class="urow"><span class="utag">Improved</span><div><div class="ut">AI-Powered Insights</div><div class="ud">Smarter on-device analysis of where your money actually goes.</div></div></div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- Stats Counters -->
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item fade-up">
-          <a href="currencies.html" style="text-decoration:none;color:inherit">
-            <span class="stat-number" data-target="80">0</span><span class="stat-suffix">+</span>
-            <span class="stat-label">Currencies Supported</span>
-          </a>
-        </div>
-        <div class="stat-item fade-up">
-          <span class="stat-number" data-target="148">0</span>
-          <span class="stat-label">Countries</span>
-        </div>
-        <div class="stat-item fade-up">
-          <span class="stat-number" data-target="100">0</span><span class="stat-suffix">+</span>
-          <span class="stat-label">Spending Lessons</span>
-        </div>
-        <div class="stat-item fade-up">
-          <span class="stat-number" data-target="0">0</span>
-          <span class="stat-label">Data Uploaded</span>
-        </div>
-      </div>
+<!-- FAQ -->
+<div class="overlay" id="m-faq" role="dialog" aria-modal="true" aria-labelledby="m-faq-t">
+  <div class="modal">
+    <button class="x btn-glass icon-btn" aria-label="Close">✕</button>
+    <h3 id="m-faq-t">Common questions</h3>
+    <p class="lead">Everything you might be wondering about Spent.</p>
+    <div class="faq">
+      <div class="item"><div class="q">Is Spent really free?</div><div class="a">Yes — 100% free with every feature unlocked. No ads, no subscriptions, no paywalls and no hidden upgrades. We don't sell your data because we never collect it.</div></div>
+      <div class="item"><div class="q">What happens if I delete the app?</div><div class="a">Because your data lives only on your device, deleting the app removes your data with it. Export a backup first if you want to keep your history before uninstalling or switching phones.</div></div>
+      <div class="item"><div class="q">Does it work offline?</div><div class="a">Always. Spent is offline-first by design — there's no server to talk to. Tracking, AI insights, receipt scanning and everything else run fully on your device, with or without a connection.</div></div>
+      <div class="item"><div class="q">How does AI work without internet?</div><div class="a">All AI runs on-device. Insights, categorization and receipt OCR are processed locally using your phone's own hardware, so nothing is ever sent to the cloud.</div></div>
+      <div class="item"><div class="q">Is receipt data safe?</div><div class="a">Completely. Receipts are scanned with on-device OCR and stored encrypted on your phone. Images and extracted data never leave the device.</div></div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- Privacy Hook -->
-  <section class="privacy-hook">
-    <div class="container">
-      <div class="privacy-hook-inner fade-up">
-        <p class="hook-line">Most expense apps track your data.</p>
-        <p class="hook-line">Some track <em>you</em>.</p>
-        <p class="hook-line highlight">Spent tracks neither.</p>
-      </div>
+<!-- ===== IN-APP PAGE SHEET (prerendered) ===== -->
+<div class="overlay sheet" id="pageSheet" role="dialog" aria-modal="true" aria-label="Page view">
+  <div class="sheet-card">
+    <header class="sheet-head">
+      <span class="sheet-title" id="sheetTitle">Page</span>
+      <button class="x btn-glass icon-btn" aria-label="Close">✕</button>
+    </header>
+    <div class="sheet-body" id="sheetBody">
+      <div class="sheet-spinner" id="sheetSpinner" hidden><span class="ring"></span>Loading…</div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- App Preview -->
-  <section class="preview-section">
-    <div class="container">
-      <div class="section-label">See It in Action</div>
-      <h2 class="features-title">Designed for clarity.<br>Built for speed.</h2>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      <!-- Feature Graphic -->
-      <div class="preview-banner fade-up">
-        <img src="images/spent_feature_graphic.png" alt="Spent: Track Spending, Keep Your Privacy — 100% Offline, 80+ Currencies, AI Insights, Receipt Scanner" loading="lazy" width="1024" height="500">
-      </div>
+  /* ---- Particles ---- */
+  var pc = document.getElementById('particles');
+  if(pc && !reduce){
+    for(var i=0;i<14;i++){
+      var p=document.createElement('div');
+      p.className='particle';
+      var dur=9+(i%6)*2.2, delay=-(i*1.4);
+      p.style.left=(6+(i*6.7)%90)+'%';
+      p.style.animationDuration=dur+'s';
+      p.style.animationDelay=delay+'s';
+      p.style.width=p.style.height=(2+(i%3))+'px';
+      pc.appendChild(p);
+    }
+  }
 
-      <!-- Screenshots -->
-      <div class="preview-screenshots" role="region" aria-label="App screenshots" tabindex="0">
-        <div class="screenshots-track">
-          <div class="screenshot-card fade-up"><img src="images/spent_tablet_01.png" alt="Dashboard with balance overview, transactions, and quick-access tools" loading="lazy"></div>
-          <div class="screenshot-card fade-up"><img src="images/spent_tablet_02.png" alt="Add expense in 3 seconds with categories and paste-to-extract" loading="lazy"></div>
-          <div class="screenshot-card fade-up"><img src="images/spent_tablet_03.png" alt="Receipt scanner with on-device OCR" loading="lazy"></div>
-          <div class="screenshot-card fade-up"><img src="images/spent_tablet_04.png" alt="Budget goals with per-category limits and real-time alerts" loading="lazy"></div>
-          <div class="screenshot-card fade-up"><img src="images/spent_tablet_05.png" alt="Spending insights with personality analysis and confidence scores" loading="lazy"></div>
-          <div class="screenshot-card fade-up"><img src="images/spent_tablet_06.png" alt="Reports with spending trends, CSV, PDF and chart export" loading="lazy"></div>
-          <div class="screenshot-card fade-up"><img src="images/spent_tablet_07.png" alt="Learn Hub with 100 smart spending lessons across 5 levels" loading="lazy"></div>
-          <div class="screenshot-card fade-up"><img src="images/spent_tablet_08.png" alt="Installment Calculator with amortization schedule and breakdown" loading="lazy"></div>
-        </div>
-      </div>
-      <div class="scroll-indicator" id="scroll-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Feature Groups -->
-  <section class="features-section">
-    <div class="container">
-      <div class="section-label">Features</div>
-      <h2 class="features-title">Everything you need.<br>Nothing you don't.</h2>
-
-      <!-- Expense Tracking -->
-      <div class="feature-group fade-up">
-        <div class="feature-group-header">
-          <span class="feature-group-icon">&#128176;</span>
-          <h3>Expense Tracking</h3>
-        </div>
-        <div class="feature-group-grid">
-          <div class="feature-mini"><span>&#9889;</span> Smart Transaction Entry</div>
-          <div class="feature-mini"><span>&#128218;</span> Multi-Account Passbooks</div>
-          <div class="feature-mini"><span>&#127919;</span> Budget Goals &amp; Alerts</div>
-          <div class="feature-mini"><span>&#128200;</span> Reports &amp; Export (CSV, PDF)</div>
-          <div class="feature-mini"><span>&#128260;</span> Recurring Transactions</div>
-          <div class="feature-mini"><span>&#127793;</span> Saving Goals</div>
-          <div class="feature-mini"><span>&#128260;</span> Subscription Tracker</div>
-          <div class="feature-mini"><span>&#127912;</span> Custom Categories &amp; Icons</div>
-          <div class="feature-mini"><span>&#9889;</span> Quick Capture (Back Tap / Shortcut)</div>
-        </div>
-      </div>
-
-      <!-- Smart Intelligence -->
-      <div class="feature-group fade-up">
-        <div class="feature-group-header">
-          <span class="feature-group-icon">&#129504;</span>
-          <h3>Smart Intelligence</h3>
-        </div>
-        <div class="feature-group-grid">
-          <div class="feature-mini"><span>&#128161;</span> Spending Personality</div>
-          <div class="feature-mini"><span>&#128269;</span> Pattern Detection</div>
-          <div class="feature-mini"><span>&#127902;</span> Monthly Stories</div>
-          <div class="feature-mini"><span>&#128247;</span> Receipt Scanner (OCR)</div>
-          <div class="feature-mini"><span>&#128203;</span> Paste &amp; Log Auto-Detect</div>
-          <div class="feature-mini"><span>&#128177;</span> Currency Converter (80+)</div>
-          <div class="feature-mini"><span>&#129302;</span> Merchant Learning</div>
-          <div class="feature-mini"><span>&#128276;</span> Smart Notifications (5 types)</div>
-        </div>
-      </div>
-
-      <!-- Trip Mode & Splitting -->
-      <div class="feature-group fade-up">
-        <div class="feature-group-header">
-          <span class="feature-group-icon">&#9992;&#65039;</span>
-          <h3>Trip Mode &amp; Splitting</h3>
-          <span class="feature-group-badge">New</span>
-        </div>
-        <div class="feature-group-grid">
-          <div class="feature-mini"><span>&#127758;</span> Create Trips with Budgets</div>
-          <div class="feature-mini"><span>&#128101;</span> Add Members &amp; Split Expenses</div>
-          <div class="feature-mini"><span>&#128178;</span> Equal, Exact &amp; Percentage Split</div>
-          <div class="feature-mini"><span>&#9989;</span> Smart Settle Up Algorithm</div>
-        </div>
-      </div>
-
-      <!-- Privacy & Security -->
-      <div class="feature-group fade-up">
-        <div class="feature-group-header">
-          <span class="feature-group-icon green">&#128274;</span>
-          <h3>Privacy &amp; Security</h3>
-          <span class="feature-group-badge">Our DNA</span>
-        </div>
-        <div class="feature-group-grid">
-          <div class="feature-mini"><span>&#128737;</span> Offline SQLite Storage</div>
-          <div class="feature-mini"><span>&#9989;</span> Zero Data Upload</div>
-          <div class="feature-mini"><span>&#128737;</span> SHA-256 Duplicate Prevention</div>
-          <div class="feature-mini"><span>&#128275;</span> Biometric Lock</div>
-          <div class="feature-mini"><span>&#127752;</span> Light &amp; Dark Theming</div>
-          <div class="feature-mini"><span>&#128247;</span> On-Device OCR &amp; AI</div>
-          <div class="feature-mini"><span>&#127919;</span> Guided Onboarding</div>
-        </div>
-      </div>
-
-      <!-- Learn & Calculate -->
-      <div class="feature-group fade-up">
-        <div class="feature-group-header">
-          <span class="feature-group-icon">&#128200;</span>
-          <h3>Learn &amp; Calculate</h3>
-        </div>
-        <div class="feature-group-grid">
-          <div class="feature-mini"><span>&#127891;</span> Learn Hub (100 Lessons)</div>
-          <div class="feature-mini"><span>&#129518;</span> Installment Calculator</div>
-          <div class="feature-mini"><span>&#128202;</span> Rate Calculator (Simple vs Compound)</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Comparison -->
-  <section class="comparison-section">
-    <div class="container">
-      <div class="section-label">Why Spent?</div>
-      <h2 class="features-title">See the difference.</h2>
-      <div class="comparison-table fade-up">
-        <table>
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th class="spent-col">Spent</th>
-              <th>Others</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Data Tracking</td>
-              <td class="spent-col"><span class="check">&#10005;</span> None</td>
-              <td><span class="cross">&#10003;</span> Yes</td>
-            </tr>
-            <tr>
-              <td>Works Offline</td>
-              <td class="spent-col"><span class="check">&#10003;</span> Always</td>
-              <td><span class="cross">&#10005;</span> Rarely</td>
-            </tr>
-            <tr>
-              <td>Cloud Required</td>
-              <td class="spent-col"><span class="check">&#10005;</span> Never</td>
-              <td><span class="cross">&#10003;</span> Always</td>
-            </tr>
-            <tr>
-              <td>Account / Login</td>
-              <td class="spent-col"><span class="check">&#10005;</span> Not needed</td>
-              <td><span class="cross">&#10003;</span> Required</td>
-            </tr>
-            <tr>
-              <td>AI Insights</td>
-              <td class="spent-col"><span class="check">&#10003;</span> On-device</td>
-              <td><span class="cross">&#10003;</span> Cloud-based</td>
-            </tr>
-            <tr>
-              <td>Receipt Scanning</td>
-              <td class="spent-col"><span class="check">&#10003;</span> On-device OCR</td>
-              <td>Cloud upload</td>
-            </tr>
-            <tr>
-              <td>Trip Splitting</td>
-              <td class="spent-col"><span class="check">&#10003;</span> Built-in</td>
-              <td><span class="cross">&#10005;</span> Separate app</td>
-            </tr>
-            <tr>
-              <td>Quick Capture</td>
-              <td class="spent-col"><span class="check">&#10003;</span> Back Tap &amp; Shortcuts</td>
-              <td><span class="cross">&#10005;</span> No</td>
-            </tr>
-            <tr>
-              <td>Currencies</td>
-              <td class="spent-col"><span class="check">&#10003;</span> 80+ currencies</td>
-              <td>5-10 typical</td>
-            </tr>
-            <tr>
-              <td>Spending Lessons</td>
-              <td class="spent-col"><span class="check">&#10003;</span> 100 lessons</td>
-              <td><span class="cross">&#10005;</span> No</td>
-            </tr>
-            <tr>
-              <td>Paste &amp; Log</td>
-              <td class="spent-col"><span class="check">&#10003;</span> Clipboard extraction</td>
-              <td><span class="cross">&#10005;</span> No</td>
-            </tr>
-            <tr>
-              <td>Advertisements</td>
-              <td class="spent-col"><span class="check">&#10005;</span> None. Ever.</td>
-              <td><span class="cross">&#10003;</span> Banners &amp; popups</td>
-            </tr>
-            <tr>
-              <td>Price</td>
-              <td class="spent-col"><span class="check">&#10003;</span> 100% Free</td>
-              <td>Free tier + paywall</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- What's New (Simplified) -->
-  <section class="whats-new-section">
-    <div class="container">
-      <div class="section-label">What's New?</div>
-      <h2 class="features-title">Latest Updates</h2>
-      <div class="timeline">
-
-        <div class="timeline-item fade-up">
-          <div class="timeline-dot green"></div>
-          <div class="timeline-content">
-            <span class="timeline-tag new">v4.0</span>
-            <h3>100% Free &amp; Ad-Free</h3>
-            <p>Spent is now completely free with zero ads. All premium features unlocked for everyone. Support development with an optional tip if you love the app.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="timeline-dot green"></div>
-          <div class="timeline-content">
-            <span class="timeline-tag new">New</span>
-            <h3>Trip Mode &amp; Expense Splitting</h3>
-            <p>Create trips, add members, split costs equally or by percentage, and settle up with smart debt simplification.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="timeline-dot green"></div>
-          <div class="timeline-content">
-            <span class="timeline-tag new">New</span>
-            <h3>Learn Hub</h3>
-            <p>100 bite-sized smart spending lessons across 5 progressive levels.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="timeline-dot green"></div>
-          <div class="timeline-content">
-            <span class="timeline-tag new">New</span>
-            <h3>Paste &amp; Log</h3>
-            <p>Extract transactions from copied bank SMS, UPI confirmations, or payment receipts — all processed locally on-device.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="timeline-dot green"></div>
-          <div class="timeline-content">
-            <span class="timeline-tag new">New</span>
-            <h3>Saving Goals</h3>
-            <p>Set personal targets, log contributions, and track progress with visual progress bars and projected completion pace.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="timeline-dot green"></div>
-          <div class="timeline-content">
-            <span class="timeline-tag new">New</span>
-            <h3>Merchant Learning</h3>
-            <p>Auto-categorizes transactions by learning from your choices. "SWIGGY INDIA" becomes "Swiggy" under Food.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="timeline-dot green"></div>
-          <div class="timeline-content">
-            <span class="timeline-tag new">New</span>
-            <h3>Quick Capture</h3>
-            <p>Log expenses in seconds via Back Tap (iOS) or app icon shortcuts — without opening the full app.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="timeline-dot green"></div>
-          <div class="timeline-content">
-            <span class="timeline-tag new">New</span>
-            <h3>Guided Onboarding</h3>
-            <p>3-step setup with feature showcase, region configuration, and automation toggles for new users.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-up">
-          <div class="timeline-dot navy"></div>
-          <div class="timeline-content">
-            <span class="timeline-tag improved">Improved</span>
-            <h3>AI-Powered Insights</h3>
-            <p>Spending personality, pattern detection, and monthly animated stories.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq-section">
-    <div class="container">
-      <div class="section-label">FAQ</div>
-      <h2 class="features-title">Common questions.</h2>
-      <div class="faq-list">
-        <details class="faq-item fade-up">
-          <summary>Is Spent really free?</summary>
-          <div class="faq-answer">Yes, 100% free. No ads, no paywalls, no subscriptions. Every feature is available to every user. If you love the app, there's an optional "Buy Me a Coffee" tip — but nothing is locked behind it.</div>
-        </details>
-        <details class="faq-item fade-up">
-          <summary>What happens if I delete the app?</summary>
-          <div class="faq-answer">Since all data is stored locally on your device, uninstalling the app will permanently delete your data. We recommend exporting your transactions as CSV or PDF from Settings before uninstalling.</div>
-        </details>
-        <details class="faq-item fade-up">
-          <summary>Does Spent work offline?</summary>
-          <div class="faq-answer">Yes, 100%. Spent is fully offline — all your data is stored locally on your device and never uploaded to any server. The only network activity is for fetching currency exchange rates.</div>
-        </details>
-        <details class="faq-item fade-up">
-          <summary>How does the AI work without internet?</summary>
-          <div class="faq-answer">All AI insights (spending personality, pattern detection, monthly stories) are powered by on-device algorithms. No data is sent to any server — the analysis happens entirely on your phone using your local transaction history.</div>
-        </details>
-        <details class="faq-item fade-up">
-          <summary>Is my receipt data safe?</summary>
-          <div class="faq-answer">Absolutely. Receipt scanning uses on-device OCR (Google ML Kit). Your photos are processed locally, never uploaded, and are not stored permanently — only the extracted transaction details are saved after you approve them.</div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="container">
-      <div class="cta-box fade-up">
-        <h2>Free. Private. No strings attached.</h2>
-        <p>No ads. No paywalls. No data collection. Just a great expense tracker.</p>
-        <div class="hero-buttons">
-          <a href="https://play.google.com/store/apps/details?id=com.bhichher.spentmoneytracker" class="store-badge store-badge-light" target="_blank" rel="noopener" aria-label="Get it on Google Play">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734c0-.382.217-.72.609-.92zM14.852 13.06l2.944 1.696-8.593 4.956 5.649-6.652zM18.843 8.19l2.814 1.622c.55.317.55 1.06 0 1.376l-2.814 1.622-3.236-2.31 3.236-2.31zM9.203 4.102l8.593 4.956-2.944 1.696-5.649-6.652z"/></svg>
-            <span class="store-badge-text"><small>GET IT ON</small>Google Play</span>
-          </a>
-          <a href="https://apps.apple.com/app/id6761287925" class="store-badge store-badge-light" target="_blank" rel="noopener" aria-label="Download on the App Store">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            <span class="store-badge-text"><small>DOWNLOAD ON THE</small>App Store</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Scroll to Top -->
-  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-  </button>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <span class="footer-text">&copy; 2026 Spent: Expense Tracker</span>
-      <ul class="footer-links">
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Use</a></li>
-        <li><a href="currencies.html">Currencies</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="https://linkedin.com/in/bhichher" target="_blank" rel="noopener">LinkedIn</a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <script>
-    // Nav scroll effect + scroll-to-top visibility
-    const scrollTopBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
-      scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+  /* ---- Count up ---- */
+  function countUp(el, target, suffix, dur){
+    if(reduce){ el.textContent = target.toLocaleString()+(suffix||''); return; }
+    var start=null;
+    function step(ts){
+      if(!start) start=ts;
+      var t=Math.min((ts-start)/dur,1);
+      var eased=1-Math.pow(1-t,3);
+      el.textContent=Math.round(target*eased).toLocaleString()+(suffix||'');
+      if(t<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function runAnimations(){
+    var bal=document.getElementById('balance');
+    if(bal) countUp(bal, 8240, '', 1700);
+    document.querySelectorAll('.sv[data-count]').forEach(function(el){
+      countUp(el, parseInt(el.getAttribute('data-count'),10), el.getAttribute('data-suffix')||'', 1600);
     });
+    var bar=document.getElementById('savedBar');
+    if(bar) requestAnimationFrame(function(){ bar.style.width='72%'; });
+  }
+  setTimeout(runAnimations, 450);
 
-    // Close mobile nav on link click
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.querySelector('.nav-links').classList.remove('open');
-      });
+  /* ---- Phone cursor follow (desktop only) ---- */
+  var phone=document.getElementById('phone');
+  var phoneTile=document.getElementById('phoneTile');
+  if(phone && phoneTile && !reduce && window.matchMedia('(min-width:981px)').matches){
+    phoneTile.addEventListener('mousemove', function(e){
+      var r=phoneTile.getBoundingClientRect();
+      var dx=(e.clientX-(r.left+r.width/2))/(r.width/2);
+      var dy=(e.clientY-(r.top+r.height/2))/(r.height/2);
+      phone.style.transform='rotateY('+(-13+dx*7)+'deg) rotateX('+(4-dy*5)+'deg)';
     });
+    phoneTile.addEventListener('mouseleave', function(){
+      phone.style.transform='rotateY(-13deg) rotateX(4deg)';
+    });
+  }
 
-    // Scroll reveal for fade-up elements
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const parent = entry.target.parentElement;
-          const siblings = Array.from(parent.querySelectorAll('.fade-up'));
-          const index = siblings.indexOf(entry.target);
-          const delay = Math.min(index * 0.06, 0.4);
-          entry.target.style.transitionDelay = delay + 's';
-          entry.target.classList.add('visible');
-          fadeObserver.unobserve(entry.target);
-        }
+  /* ---- Body scroll lock helper ---- */
+  function syncScrollLock(){
+    var anyOpen=document.querySelector('.overlay.open');
+    document.body.style.overflow = anyOpen ? 'hidden' : '';
+  }
+
+  /* ---- Generic modal open/close ---- */
+  var lastFocus=null;
+  function openOverlay(ov){
+    if(!ov) return;
+    lastFocus=document.activeElement;
+    ov.classList.add('open');
+    syncScrollLock();
+    var x=ov.querySelector('.x'); if(x) x.focus();
+  }
+  function closeOverlay(ov){
+    ov.classList.remove('open');
+    syncScrollLock();
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.querySelectorAll('[data-modal]').forEach(function(btn){
+    btn.addEventListener('click', function(){ openOverlay(document.getElementById(btn.getAttribute('data-modal'))); });
+  });
+  document.querySelectorAll('.overlay').forEach(function(ov){
+    ov.addEventListener('click', function(e){ if(e.target===ov) closeOverlay(ov); });
+    var x=ov.querySelector('.x'); if(x) x.addEventListener('click', function(){ closeOverlay(ov); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){
+      var open=document.querySelector('.overlay.open');
+      if(open) closeOverlay(open);
+    }
+  });
+
+  /* ===== In-app page views (prerendered iframes, no navigation, no new tabs) ===== */
+  var PAGES={
+    currencies:{file:'currencies.html', title:'Currencies'},
+    privacy:{file:'privacy.html', title:'Privacy'},
+    terms:{file:'terms.html', title:'Terms'},
+    contact:{file:'contact.html', title:'Contact'}
+  };
+  var sheet=document.getElementById('pageSheet');
+  var sheetBody=document.getElementById('sheetBody');
+  var sheetTitle=document.getElementById('sheetTitle');
+  var spinner=document.getElementById('sheetSpinner');
+  var frames={}, ready={};
+
+  // Strip the page's own chrome and disable new-tab links once it has loaded.
+  function cleanFrame(key){
+    var f=frames[key];
+    try{
+      var d=f.contentDocument;
+      if(!d) return;
+      var s=d.createElement('style');
+      s.textContent='.nav,.skip-to-content,.footer,.hamburger{display:none!important}'
+        +'.page-header{padding-top:32px!important}'
+        +'html,body{overflow-x:hidden!important;background:#fff}';
+      d.head.appendChild(s);
+      // External links open in a new tab; same-origin links stay in the in-app view.
+      d.querySelectorAll('a[href]').forEach(function(a){
+        var external = /^https?:/i.test(a.protocol) && a.host && a.host!==location.host;
+        if(external){ a.target='_blank'; a.rel='noopener'; }
+        else { a.removeAttribute('target'); }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }catch(e){/* cross-origin or not ready: ignore */}
+  }
+  function buildFrame(key){
+    if(frames[key]) return frames[key];
+    var f=document.createElement('iframe');
+    f.className='page-frame';
+    f.title=PAGES[key].title;
+    f.setAttribute('loading','eager');
+    f.addEventListener('load', function(){ ready[key]=true; cleanFrame(key); if(spinner) spinner.hidden=true; });
+    f.src=PAGES[key].file;
+    sheetBody.appendChild(f);
+    frames[key]=f;
+    return f;
+  }
+  // Prerender all pages in the background once the main view is idle.
+  function prerenderAll(){ Object.keys(PAGES).forEach(buildFrame); }
+  if('requestIdleCallback' in window){ requestIdleCallback(prerenderAll, {timeout:2500}); }
+  else { window.addEventListener('load', function(){ setTimeout(prerenderAll, 800); }); }
 
-    document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
-
-    // Phone carousel rotation
-    (function() {
-      const positions = ['pos-far-left', 'pos-left', 'pos-center', 'pos-right', 'pos-far-right'];
-      const phones = document.querySelectorAll('#phone-stack .phone');
-      const glow = document.getElementById('glow');
-      if (!phones.length) return;
-
-      let offsets = [0, 1, 2, 3, 4];
-
-      function rotateCarousel() {
-        offsets = offsets.map(o => (o + 1) % positions.length);
-        phones.forEach((phone, i) => {
-          positions.forEach(p => phone.classList.remove(p));
-          phone.classList.add(positions[offsets[i]]);
-        });
-        if (glow) {
-          glow.classList.remove('bright', 'dim');
-          glow.classList.add('dim');
-          setTimeout(() => {
-            glow.classList.remove('dim');
-            glow.classList.add('bright');
-          }, 700);
-        }
-      }
-
-      setInterval(rotateCarousel, 4000);
-    })();
-
-    // Animated counters
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.dataset.target);
-          if (target === 0) { el.textContent = '0'; counterObserver.unobserve(el); return; }
-          const duration = 1500;
-          const start = performance.now();
-          function tick(now) {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.round(target * eased);
-            if (progress < 1) requestAnimationFrame(tick);
-          }
-          requestAnimationFrame(tick);
-          counterObserver.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
-
-    // Screenshot scroll indicator
-    (function() {
-      const track = document.querySelector('.preview-screenshots');
-      const dots = document.querySelectorAll('#scroll-dots .dot');
-      if (!track || !dots.length) return;
-
-      track.addEventListener('scroll', () => {
-        const scrollLeft = track.scrollLeft;
-        const maxScroll = track.scrollWidth - track.clientWidth;
-        const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
-        const activeIndex = Math.round(progress * (dots.length - 1));
-        dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
-      });
-    })();
-  </script>
-
+  function setActive(key){
+    document.querySelectorAll('[data-page]').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-page')===key);
+    });
+  }
+  function openPage(key){
+    var f=buildFrame(key); // ensures it exists even if idle prerender hasn't fired
+    Object.keys(frames).forEach(function(k){ frames[k].classList.toggle('show', k===key); });
+    if(spinner){ spinner.hidden = !!ready[key]; }
+    sheetTitle.textContent=PAGES[key].title;
+    setActive(key);
+    openOverlay(sheet);
+  }
+  function goHome(){
+    if(sheet.classList.contains('open')) closeOverlay(sheet);
+    setActive('home');
+  }
+  document.querySelectorAll('[data-page]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var key=btn.getAttribute('data-page');
+      if(key==='home'){ goHome(); } else { openPage(key); }
+    });
+  });
+  // Keep "home" highlighted again after the sheet is dismissed.
+  sheet.addEventListener('click', function(e){ if(e.target===sheet) setActive('home'); });
+  var sheetX=sheet.querySelector('.x'); if(sheetX) sheetX.addEventListener('click', function(){ setActive('home'); });
+})();
+</script>
 </body>
 </html>
